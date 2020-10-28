@@ -1,0 +1,6 @@
+---
+ name: Display a web interstitial ad
+ description: Display a GPT managed web interstial ad
+ authors:
+   - Google Publisher Tag Team
+ ...
