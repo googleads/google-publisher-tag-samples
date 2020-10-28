@@ -1,0 +1,6 @@
+---
+ name: Tag pages with infinite content
+ description: Use GPT to dynamically generate new ad content
+ authors:
+   - Google Publisher Tag Team
+ ...

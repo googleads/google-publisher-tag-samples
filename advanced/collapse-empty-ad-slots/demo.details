@@ -1,0 +1,6 @@
+---
+ name: Collapse empty ad slots
+ description: Configure automatic collapsing/expanding of ad slots
+ authors:
+   - Google Publisher Tag Team
+ ...
