@@ -24,7 +24,7 @@ see [Traffic mobile web interstitials][admanager_hc_interstitial].
   fills.
 * **If using single-request architecture (SRA) on a page with multiple slots,
   don’t call `display()` until static ad slots divs are created.** As explained
-  in [Ads Best Practices][guide_sra], the first call to `display()` requests
+  in [Ad Best Practices][guide_sra], the first call to `display()` requests
   every ad slot defined prior to that point. Although web interstitial slots do
   not require a predefined `<div>`, static ad slots do. Calling `display()`
   before these elements are present on the page can result in lower quality
