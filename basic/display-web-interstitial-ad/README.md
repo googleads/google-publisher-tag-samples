@@ -3,7 +3,7 @@
 This example demonstrates how to display a web interstitial ad using the Google
 Publisher Tag (GPT) library. Web interstitials are GPT-managed, full-page ads
 that appear between page views. For more information about web interstitials,
-see [Traffic mobile web interstitials][admanager_hc_interstitial].
+see [Traffic web interstitials][admanager_hc_interstitial].
 
 ## Usage notes
 
