@@ -2,7 +2,7 @@ Google Publisher Tag Samples
 ============================
 This respository contains a collection of Google Publisher Tag (GPT) samples.
 Learn more about GPT at our
-[developer site](https://developers.google.com/doubleclick-gpt/).
+[developer site](https://developers.google.com/publisher-tag/).
 
 Samples are loosely organized as follows:
 
