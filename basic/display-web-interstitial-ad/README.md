@@ -34,6 +34,6 @@ see [Traffic web interstitials][admanager_hc_interstitial].
 
 [admanager_hc_interstitial]: //support.google.com/admanager/answer/9840201
 
-[guide_sra]: //developers.google.com/doubleclick-gpt/guides/ad-best-practices#use_single_request_architecture_correctly
+[guide_sra]: //developers.google.com/publisher-tag/guides/ad-best-practices#use_single_request_architecture_correctly
 
 [simulate_mobile]: //developers.google.com/web/tools/chrome-devtools/device-mode#viewport

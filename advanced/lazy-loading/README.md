@@ -10,4 +10,4 @@ other ad slots is made.
 
 
 
-[ref_doc_collapseemptydivs]: /doubleclick-gpt/reference#googletag.PubAdsService_collapseEmptyDivs
+[ref_doc_collapseemptydivs]: /publisher-tag/reference#googletag.PubAdsService_collapseEmptyDivs

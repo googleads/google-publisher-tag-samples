@@ -6,4 +6,4 @@ this sample works.
 
 
 
-[get_started]: https://developers.google.com/doubleclick-gpt/guides/get-started
+[get_started]: https://developers.google.com/publisher-tag/guides/get-started

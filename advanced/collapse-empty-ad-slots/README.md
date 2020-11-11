@@ -29,4 +29,4 @@ below, if specific slots on your page are more or less likely to be filled.
 
 
 
-[ref_doc_collapseemptydivs]: https://developers.google.com/doubleclick-gpt/reference#googletag.PubAdsService_collapseEmptyDivs
+[ref_doc_collapseemptydivs]: https://developers.google.com/publisher-tag/reference#googletag.PubAdsService_collapseEmptyDivs
