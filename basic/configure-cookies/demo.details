@@ -1,6 +1,6 @@
 ---
  name: Configure cookie options
- description: Enable/disable cookies for GPT ad requests
+ description: Enable/disable cookies for GPT ad requests.
  authors:
    - Google Publisher Tag Team
- ...
+...

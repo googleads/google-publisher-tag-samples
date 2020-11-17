@@ -1,6 +1,6 @@
 ---
- name: Configure privacy settings
- description: Configure privacy settings for GPT ad requests
+ name: Configure personalized ads
+ description: Customize ad personalization settings for GPT ad requests.
  authors:
    - Google Publisher Tag Team
- ...
+...
