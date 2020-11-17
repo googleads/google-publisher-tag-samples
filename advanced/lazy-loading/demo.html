@@ -34,8 +34,8 @@
           .setTargeting('test', 'lazyload')
           .addService(googletag.pubads());
 
-        // Some examples of ways to enable below. Normally, only one of these
-        // methods should be used.
+        // Some examples of ways to enable lazy loading below.
+        // Normally, only one of these methods should be used.
 
         // A) Enable with defaults.
         googletag.pubads().enableLazyLoad();
@@ -55,9 +55,62 @@
           mobileScaling: 2.0
         });
 
+        // Register event handlers to observe lazy loading behavior.
+        googletag.pubads().addEventListener('slotRequested', function(event) {
+          updateSlotStatus(event.slot.getSlotElementId(), 'fetched');
+        });
+
+        googletag.pubads().addEventListener('slotOnload', function(event) {
+          updateSlotStatus(event.slot.getSlotElementId(), 'rendered');
+        });
+
         googletag.enableServices();
       });
+
+      function updateSlotStatus(slotId, state) {
+        var elem = document.getElementById(slotId + '-' + state);
+        elem.className = 'activated';
+        elem.innerText = 'Yes';
+      }
     </script>
+    <style>
+      div.ad-slot {
+        border-style: dashed;
+        display: block;
+        margin: auto;
+      }
+
+      div.main-content {
+        background-color: lightsteelblue;
+        margin-top: 125px;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      div.status-panel {
+        background: white;
+        height: 125px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+
+      table {
+        width: 100%;
+      }
+
+      table th {
+        text-align: center;
+      }
+
+      table td:not(.slot-name) {
+        background-color: lightsalmon;
+      }
+
+      table td.activated {
+        background-color: lightgreen;
+      }
+    </style>
   </head>
   <body>
 
@@ -68,26 +121,58 @@
        3. Slot 3 will not be fetched or rendered on mobile or desktop.
     -->
 
-    <div id="div-1">
-      <script>
-        googletag.cmd.push(function() { googletag.display('div-1'); });
-      </script>
+    <div class="main-content">
+      <div id="div-1" class="ad-slot" style="height: 90px; width: 728px;">
+        <script>
+          googletag.cmd.push(function() { googletag.display('div-1'); });
+        </script>
+      </div>
+
+      <!-- 3 viewport tall div to place next slot 3 viewports away. -->
+      <div style="height:300vh"></div>
+
+      <div id="div-2" class="ad-slot" style="height: 90px; width: 728px;">
+        <script>
+          googletag.cmd.push(function() { googletag.display('div-2'); });
+        </script>
+      </div>
+
+      <!-- 9 viewport tall div to place next slot 12 viewports away. -->
+      <div style="height:900vh"></div>
+
+      <div id="div-3" class="ad-slot" style="height: 90px; width: 728px;">
+        <script>
+          googletag.cmd.push(function() { googletag.display('div-3'); });
+        </script>
+      </div>
     </div>
 
-    <!-- 3 viewport tall div to place next slot 3 viewports away. -->
-    <div style="height:300vh"></div>
-    <div id="div-2">
-      <script>
-        googletag.cmd.push(function() { googletag.display('div-2'); });
-      </script>
-    </div>
-
-    <!-- 9 viewport tall div to place next slot 12 viewports away. -->
-    <div style="height:900vh"></div>
-    <div id="div-3">
-      <script>
-        googletag.cmd.push(function() { googletag.display('div-3'); });
-      </script>
+    <div class="status-panel">
+      <table>
+        <tr>
+          <th>Ad Slot</th>
+          <th>Fetched?</th>
+          <th>Rendered?</th>
+        </tr>
+        <tr>
+          <td class="slot-name">Ad Slot 1</td>
+          <td id="div-1-fetched">No</td>
+          <td id="div-1-rendered">No</td>
+        </tr>
+        <tr>
+          <td class="slot-name">Ad Slot 2</td>
+          <td id="div-2-fetched">No</td>
+          <td id="div-2-rendered">No</td>
+        </tr>
+        <tr>
+          <td class="slot-name">Ad Slot 3</td>
+          <td id="div-3-fetched">No</td>
+          <td id="div-3-rendered">No</td>
+        </tr>
+      </table>
+      <p>
+        Scroll the container below to lazily load the ad slots.
+      </p>
     </div>
   </body>
 </html>
