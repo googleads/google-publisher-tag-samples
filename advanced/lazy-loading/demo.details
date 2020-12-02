@@ -3,4 +3,5 @@
  description: Defer the requesting and rendering of ads.
  authors:
    - Google Publisher Tag Team
+ embed: false
 ...
