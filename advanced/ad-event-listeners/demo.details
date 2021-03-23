@@ -1,0 +1,6 @@
+---
+ name: Ad event listeners
+ description: Monitor and report on ad events fired by GPT.
+ authors:
+   - Google Publisher Tag Team
+...
