@@ -12,6 +12,7 @@ see [Traffic web interstitials][admanager_hc_interstitial].
     interstitials are only supported when GPT is running in the top window. On
     pages that do not support web interstitials, `defineOutOfPageSlot()` may
     return null. Be sure to check for this to avoid errors.
+
 *   **Only request web interstitial ads on pages or environments where you want
     an interstitial to appear.** Web interstitial ads are eligible to serve to
     desktop, tablet, and mobile devices.
@@ -24,6 +25,10 @@ see [Traffic web interstitials][admanager_hc_interstitial].
     automatically create and insert their own container into the page when an ad
     fills.
 
+*   **Web interstitials have a fixed [frequency cap][admanager_hc_frequency].**
+    This prevents the same user from being shown an interstitial more than once
+    per hour, per subdomain.
+
 *   **If using single-request architecture (SRA) on a page with multiple slots,
     don’t call `display()` until static ad slots divs are created.** As
     explained in [Ad Best Practices][guide_sra], the first call to `display()`
@@ -34,6 +39,7 @@ see [Traffic web interstitials][admanager_hc_interstitial].
     recommend delaying the initial call until after the static slots are
     defined.
 
+[admanager_hc_frequency]: //support.google.com/admanager/answer/9840201#frequency
 [admanager_hc_interstitial]: //support.google.com/admanager/answer/9840201
 
 [guide_sra]: //developers.google.com/publisher-tag/guides/ad-best-practices#use_single_request_architecture_correctly
