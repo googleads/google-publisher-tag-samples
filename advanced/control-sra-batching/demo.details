@@ -1,0 +1,8 @@
+---
+ name: Control SRA batching
+ description: >
+   Precisely control which ad slots are requested when in
+   Single Request Architecture (SRA) mode.
+ authors:
+   - Google Publisher Tag Team
+...
