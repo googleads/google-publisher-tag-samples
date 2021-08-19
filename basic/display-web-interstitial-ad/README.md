@@ -25,9 +25,15 @@ see [Traffic web interstitials][admanager_hc_interstitial].
     automatically create and insert their own container into the page when an ad
     fills.
 
-*   **Web interstitials have a fixed [frequency cap][admanager_hc_frequency].**
-    This prevents the same user from being shown an interstitial more than once
-    per hour, per subdomain.
+*   **Web interstitial ads have a fixed
+    [frequency cap][admanager_hc_frequency].** This prevents the same user from
+    being shown an interstitial more than once per hour, per subdomain.
+
+*   **Web interstitial ads require access to local storage.** For publishers
+    integrated with the
+    [IAB Transparency and Consent Framework v2.0][admanager_hc_tcf], this means
+    that consent for [Purpose 1][admanager_hc_tcf_purpose] is required for web
+    interstitial ads to function.
 
 *   **If using single-request architecture (SRA) on a page with multiple slots,
     don’t call `display()` until static ad slots divs are created.** As
@@ -41,6 +47,8 @@ see [Traffic web interstitials][admanager_hc_interstitial].
 
 [admanager_hc_frequency]: //support.google.com/admanager/answer/9840201#frequency
 [admanager_hc_interstitial]: //support.google.com/admanager/answer/9840201
+[admanager_hc_tcf]: //support.google.com/admanager/answer/9805023
+[admanager_hc_tcf_purpose]: //support.google.com/admanager/answer/9461778#purposes
 
 [guide_sra]: //developers.google.com/publisher-tag/guides/ad-best-practices#use_single_request_architecture_correctly
 
