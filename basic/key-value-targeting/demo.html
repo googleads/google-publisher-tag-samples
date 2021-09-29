@@ -1,0 +1,114 @@
+<!doctype html>
+<!--
+ Copyright 2021 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<head>
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+  <script>
+    window.googletag = window.googletag || {cmd: []};
+
+    // GPT slots
+    var adSlots = [];
+
+    googletag.cmd.push(function() {
+      // Configure slot-level targeting.
+      adSlots[0] = googletag
+          .defineSlot('/6355419/Travel/Europe', [728, 90], 'banner-ad-1')
+          .addService(googletag.pubads())
+          .setTargeting('color', 'red')
+          .setTargeting('position', 'atf');
+      adSlots[1] = googletag
+          .defineSlot('/6355419/Travel/Europe', [728, 90], 'banner-ad-2')
+          .addService(googletag.pubads())
+          .setTargeting('position', 'btf');
+
+      // Configure page-level targeting.
+      googletag.pubads().setTargeting('interests', 'basketball');
+
+      // Enable SRA and services.
+      googletag.pubads().enableSingleRequest();
+      googletag.enableServices();
+    });
+
+    function toggleTargeting(button) {
+      var isTargetingSet = (button.getAttribute('data-enabled') === 'true');
+      button.setAttribute('data-enabled', !isTargetingSet);
+
+      googletag.cmd.push(function() {
+        // Enable or disable targeting depending on the state of the page.
+        if (isTargetingSet) {
+          disableTargeting();
+        } else {
+          enableTargeting();
+        }
+
+        // Refresh all ads for targeting changes to take effect.
+        googletag.pubads().refresh();
+      });
+    }
+
+    function enableTargeting() {
+      // Reset slot- and page-level targeting to their original values.
+      adSlots[0].setTargeting('color', 'red');
+      googletag.pubads().setTargeting('interests', 'basketball');
+    }
+
+    function disableTargeting() {
+      // Step 1, clear slot-level color targeting.
+      adSlots[0].clearTargeting('color');
+
+      // Step 2, clear all page-level targeting.
+      googletag.pubads().clearTargeting();
+    }
+  </script>
+  <style>
+    .ads,
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    button::before {
+      content: "Disable";
+      color: red;
+      font-weight: bold;
+    }
+    button[data-enabled="false"]::before {
+      content: "Enable";
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="ads">
+    <div id="banner-ad-1" style="width: 728px; height: 90px;"></div>
+    <div id="banner-ad-2" style="width: 728px; height: 90px;"></div>
+  </div>
+
+  <div class="buttons">
+    <button data-enabled="true" onclick="toggleTargeting(this);">
+      targeting
+    </button>
+  </div>
+
+  <script>
+    googletag.cmd.push(function() {
+      googletag.display('banner-ad-1');
+    });
+  </script>
+</body>
