@@ -32,8 +32,19 @@
         // Define an anchor ad slot at the top of the viewport.
         // Note: a single anchor ad slot may be defined per page, at either the
         // top or bottom of the viewport.
-        anchorSlot = googletag.defineOutOfPageSlot(
+        //
+        // Be aware that anchor ads are not limited to mobile devices. If you serve
+        // the same code to both mobile and non-mobile users, it is recommended to
+        // explicitly define when and where anchor ads should be shown for each
+        // environment. Here we use a basic check of viewport width to create a
+        // top anchor on mobile and a bottom anchor on non-mobile devices.
+        if (document.body.clientWidth <= 500) {
+          anchorSlot = googletag.defineOutOfPageSlot(
             '/6355419/Travel', googletag.enums.OutOfPageFormat.TOP_ANCHOR);
+        } else {
+          anchorSlot = googletag.defineOutOfPageSlot(
+            '/6355419/Travel', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR);
+        }
 
         // Define an anchor ad slot at the bottom of the viewport.
         // anchorSlot = googletag.defineOutOfPageSlot(

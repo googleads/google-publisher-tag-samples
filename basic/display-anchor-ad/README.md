@@ -4,10 +4,15 @@ This example displays an anchor ad using the Google Publisher Tag (GPT) library.
 Learn more about anchor ads in the
 [Google Ad Manager help center][admanager_hc_anchor].
 
-Note: this sample will currently only display an anchor ad on mobile devices and
-tablets which meet the criteria mentioned in the usage notes section. For
-testing purposes, Chrome DevTools can be used to
-[simulate a mobile device][simulate_mobile] that meets these criteria.
+## Preview anchor ads
+
+You can display a demo anchor ad on any page that shows ads with GPT by adding
+`#gamTopAnchorDemo` or `#gamBottomAnchorDemo` to the URL. For example,
+`https://www.example.com/#gamTopAnchorDemo`.
+
+This functionality can be used to preview anchor ads on your site with no code
+changes required. This is especially useful to quickly validate how anchors will
+look and behave on different devices and in different operating environments.
 
 ## Usage notes
 
@@ -27,6 +32,9 @@ testing purposes, Chrome DevTools can be used to
 *   **Only request anchor ads on pages/environments where you want an anchor to
     appear.** For example, don't assume anchors are ineligible on desktop pages,
     as we may add support in the future.
+
+    Note: You can use Chrome DevTools [mobile simulation][simulate_mobile] to
+    test anchor ads on mobile from a desktop environment.
 
 *   **Anchor ads generate their own ad container.** Unlike other ad types, it's
     not necessary to define a `<div>` for anchor ads. Anchor ads automatically
