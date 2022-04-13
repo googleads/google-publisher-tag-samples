@@ -20,8 +20,8 @@ again.
 
 All submissions, including submissions by project members, require review. We
 use GitHub pull requests for this purpose. Consult
-[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
-information on using pull requests.
+[GitHub Help](https://docs.github.com/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews)
+for more information on using pull requests.
 
 ## Community Guidelines
 
