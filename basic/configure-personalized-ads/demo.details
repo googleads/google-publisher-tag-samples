@@ -1,6 +1,0 @@
----
- name: Configure personalized ads
- description: Customize ad personalization settings for GPT ad requests.
- authors:
-   - Google Publisher Tag Team
-...

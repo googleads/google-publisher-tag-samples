@@ -45,6 +45,23 @@
         });
       }
 
+      var npaEnabled = false;
+      function toggleNonPersonalizedAds(button) {
+        // Set to true to enable, false to disable.
+        npaEnabled = !npaEnabled;
+
+        googletag.cmd.push(function() {
+          googletag.pubads().setPrivacySettings({
+            nonPersonalizedAds: npaEnabled
+          });
+
+          // Refresh all ads on the page.
+          googletag.pubads().refresh();
+
+          button.setAttribute('data-enabled', npaEnabled);
+        });
+      }
+
       var rdpEnabled = false;
       function toggleRestrictDataProcessing(button) {
         // Set to true to enable, false to disable.
@@ -103,6 +120,9 @@
     <div>
       <button onclick="toggleChildDirectedTreatment(this);">
         Child Directed Treatment
+      </button>
+      <button onclick="toggleNonPersonalizedAds(this);">
+        Non-personalized Ads
       </button>
       <button onclick="toggleRestrictDataProcessing(this);">
         Restricted Data Processing
