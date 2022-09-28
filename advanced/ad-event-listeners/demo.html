@@ -54,12 +54,18 @@
           var details = {
             'Advertiser ID': event.advertiserId,
             'Campaign ID': event.campaignId,
+            'Company IDs': event.companyIds,
             'Creative ID': event.creativeId,
+            'Creative Template ID': event.creativeId,
+            'Is backfill?': event.isBackfill,
             'Is empty?': event.isEmpty,
+            'Label IDs': event.labelIds,
             'Line Item ID': event.lineItemId,
             'Size': event.size.join('x'),
+            'Slot content changed?': event.slotContentChanged,
             'Source Agnostic Creative ID': event.sourceAgnosticCreativeId,
-            'Source Agnostic Line Item ID': event.sourceAgnosticLineItemId
+            'Source Agnostic Line Item ID': event.sourceAgnosticLineItemId,
+            'Yield Group IDs': event.yieldGroupIds
           }
 
           printEventMessage('Slot has finished rendering.', slotId, details);
