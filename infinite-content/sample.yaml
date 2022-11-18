@@ -3,4 +3,7 @@
  description: Use GPT to dynamically generate new ad content.
  authors:
    - Google Publisher Tag Team
+ skill: Advanced
+ keywords:
+   - Multiple ads
 ...

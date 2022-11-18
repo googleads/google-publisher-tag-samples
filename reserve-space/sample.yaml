@@ -3,4 +3,7 @@
  description: Minimize layout shift by reserving space for ads.
  authors:
    - Google Publisher Tag Team
+ skill: Beginner
+ keywords:
+   - Multiple ads
 ...

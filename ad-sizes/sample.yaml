@@ -3,4 +3,7 @@
  description: Specify which ad sizes are eligible to serve to an ad slot.
  authors:
    - Google Publisher Tag Team
+ skill: Beginner
+ keywords:
+   - Multiple ads
 ...
