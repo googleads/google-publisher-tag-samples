@@ -1,0 +1,7 @@
+---
+ name: Display an anchor ad
+ description: Display a GPT-managed anchor ad.
+ authors:
+   - Google Publisher Tag Team
+ embed: false
+...

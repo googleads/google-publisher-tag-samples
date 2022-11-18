@@ -1,0 +1,8 @@
+---
+ name: Display a limited ad
+ description: >
+   Display an ad in the absence of consent for the use of cookies or other local
+   identifiers.
+ authors:
+   - Google Publisher Tag Team
+...

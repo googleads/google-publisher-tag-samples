@@ -1,21 +1,8 @@
 Google Publisher Tag Samples
 ============================
-This respository contains a collection of Google Publisher Tag (GPT) samples.
+This repository contains a collection of Google Publisher Tag (GPT) samples.
 Learn more about GPT at our
 [developer site](https://developers.google.com/publisher-tag/).
-
-Samples are loosely organized as follows:
-
-* **basic/**
-
-  Samples that showcase basic library functionality and simple configurations.
-  Targeted at beginner to intermediate GPT users.
-
-* **advanced/**
-
-  Samples that showcase advanced library usage. These samples may leverage
-  multiple library features to satisfy a single complex use case. Targeted at
-  seasoned GPT users.
 
 Refer to the `README.md` file inside each directory for sample specific usage
 instructions.

@@ -1,0 +1,6 @@
+---
+ name: Display a test ad
+ description: Display a fixed-sized test ad.
+ authors:
+   - Google Publisher Tag Team
+...

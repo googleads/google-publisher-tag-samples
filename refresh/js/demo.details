@@ -1,0 +1,6 @@
+---
+ name: Refresh ad slots
+ description: Use GPT to dynamically reload ads.
+ authors:
+   - Google Publisher Tag Team
+...
