@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Refresh ad slots example</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+  </head>
+
+  <body>
+    <div>
+      <h1>GPT Training - Slot Refresh</h1>
+      <div id="leaderboard1" style="width: 728px; height: 90px"></div>
+
+      <div id="leaderboard2" style="width: 728px; height: 90px"></div>
+    </div>
+
+    <div>
+      <!-- Refresh the first slot -->
+      <button id="refreshTopButton">Refresh Top Ad</button>
+
+      <!-- Refresh the second slot -->
+      <button id="refreshBottomButton">Refresh Bottom Ad</button>
+
+      <!-- Refresh both slots -->
+      <button id="refreshAllButton">Refresh All Ads</button>
+
+      <!-- Clear slots -->
+      <button id="clearAllButton">Clear All Ads</button>
+    </div>
+  </body>
+</html>

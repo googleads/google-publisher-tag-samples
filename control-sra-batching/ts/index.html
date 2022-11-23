@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Control SRA batching example</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      .ad-slot {
+        border-style: solid;
+        display: block;
+        margin: 1px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <p>SRA request #1</p>
+    </div>
+
+    <div class="row">
+      <div id="slot-1" class="ad-slot" style="height: 90px; width: 728px"></div>
+      <div id="slot-2" class="ad-slot" style="height: 90px; width: 728px"></div>
+    </div>
+
+    <div class="row">
+      <p>SRA request #2 in <span id="seconds">5</span> seconds...</p>
+    </div>
+
+    <div class="row">
+      <div
+        id="slot-3"
+        class="ad-slot"
+        style="height: 250px; width: 300px"
+      ></div>
+      <div
+        id="slot-4"
+        class="ad-slot"
+        style="height: 250px; width: 300px"
+      ></div>
+      <div
+        id="slot-5"
+        class="ad-slot"
+        style="height: 250px; width: 300px"
+      ></div>
+    </div>
+  </body>
+</html>
