@@ -40,7 +40,7 @@
           printEventMessage('Impression has become viewable.', slotId);
         });
 
-        // This listener will be called when a slots creative iframe load event fires.
+        // This listener will be called when a slot's creative iframe load event fires.
         googletag.pubads().addEventListener('slotOnload', function(event) {
           var slotId = event.slot.getSlotElementId();
           printEventMessage('Creative iframe load event has fired.', slotId);
@@ -108,12 +108,17 @@
         var row = document.getElementsByClassName('status-row')[0].cloneNode(true);
 
         var cells = row.getElementsByClassName('status-cell');
-        cells[0].innerHTML = slotId;
-        cells[1].innerHTML = eventMessage;
+        cells[0].textContent = slotId;
+        cells[1].textContent = eventMessage;
         for (var key in details) {
-          cells[1].innerHTML += '<br/>&ensp;&ensp;' + key + ': ' + details[key];
+          if (!details.hasOwnProperty(key) || !details[key]) continue;
+
+          var detailElem = document.createElement('p');
+          detailElem.className = 'status-detail';
+          detailElem.textContent = key + ': ' + details[key];
+          cells[1].appendChild(detailElem);
         }
-        cells[2].innerHTML = (Date.now() - requestedTimestamp[slotId]) + 'ms';
+        cells[2].textContent = (Date.now() - requestedTimestamp[slotId]) + 'ms';
 
         document.getElementsByClassName('status-container')[0].appendChild(row);
       }
@@ -138,6 +143,11 @@
       .status-cell {
         float: left;
         min-width: 15%
+      }
+
+      .status-detail {
+        margin: 0;
+        padding-left: 1em;
       }
 
       .event {

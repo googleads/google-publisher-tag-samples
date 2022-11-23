@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ad event listeners</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      .status,
+      .status-row {
+        display: inline-table;
+        width: 750px;
+      }
+
+      .status-container {
+        height: 400px;
+        overflow: scroll;
+        width: 100%;
+      }
+
+      .status-row:nth-child(even) {
+        background-color: lightsteelblue;
+      }
+
+      .status-cell {
+        float: left;
+        min-width: 15%;
+      }
+
+      .status-detail {
+        margin: 0;
+        padding-left: 1em;
+      }
+
+      .event {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <span>Ad slot 1</span>
+    <div id="ad-slot-1" style="width: 728px; height: 90px"></div>
+
+    <span>Ad slot 2</span>
+    <div id="ad-slot-2" style="width: 750px; height: 200px"></div>
+
+    <div class="status">
+      <div class="status-row">
+        <div class="status-cell"><b>Slot</b></div>
+        <div class="status-cell event"><b>Event</b></div>
+        <div class="status-cell"><b>Time from ad request</b></div>
+      </div>
+
+      <div class="status-container"></div>
+    </div>
+  </body>
+</html>
