@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ad sizes example</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      .ad-container {
+        border: solid;
+        width: 100%;
+      }
+
+      .ad-slot {
+        border-style: dashed;
+        display: inline-block;
+      }
+
+      .native-slot {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed size ad slot</h1>
+    <p>This ad slot will display an ad sized 300x250.</p>
+    <div class="ad-container">
+      <div id="fixed-size-ad" class="ad-slot"></div>
+    </div>
+
+    <h1>Multi-size ad slot</h1>
+    <p>This ad slot will display an ad with any of the following dimensions: 300x250, 728x90, 750x200.</p>
+    <div class="ad-container">
+      <div id="multi-size-ad" class="ad-slot"></div>
+    </div>
+
+    <h1>Fluid ad slot</h1>
+    <p>This ad slot will resize its height to fit the creative content being displayed. For this example, the slot is limited to 50% of the width of its parent container.</p>
+    <div class="ad-container">
+      <div id="native-ad" class="ad-slot native-slot"></div>
+    </div>
+
+    <h1>Responsive ad slot</h1>
+    <p>This ad slot will display different sized ads depending on the size of the browser viewport at page load time:</p>
+    <ul>
+      <li>When viewport &gt;= 1024x768, ads sized 750x200 or 728x90 may be displayed.</li>
+      <li>When 1024x768 &gt; viewport &gt;= 640x480, ads sized 300x250 may be displayed.</li>
+      <li>When viewport &lt; 640x480, no ads may be displayed.</li>
+    </ul>
+    <div class="ad-container">
+      <div id="responsive-ad" class="ad-slot"></div>
+    </div>
+  </body>
+</html>

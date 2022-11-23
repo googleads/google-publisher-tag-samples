@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      .ads,
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      button::before {
+        content: 'Disable ';
+        color: red;
+        font-weight: bold;
+      }
+
+      button[data-enabled='false']::before {
+        content: 'Enable ';
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ads">
+      <div id="banner-ad-1" style="width: 728px; height: 90px"></div>
+      <div id="banner-ad-2" style="width: 728px; height: 90px"></div>
+    </div>
+
+    <div class="buttons">
+      <button id="targetingButton" data-enabled="true">targeting</button>
+    </div>
+  </body>
+</html>
