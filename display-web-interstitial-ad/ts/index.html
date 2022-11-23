@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web Interstitial Ad Example</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      #link {
+        display: none;
+      }
+
+      div.content {
+        position: fixed;
+        top: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="static-ad-1" style="width: 100px; height: 100px"></div>
+    <div class="content">
+      <span id="status">Web interstitial is not supported on this page.</span>
+      <p>
+        <a id="link" href="https://www.example.com/">TRIGGER INTERSTITIAL</a>
+      </p>
+      <p>
+        <!--
+          You can prevent specific links from triggering GPT-managed web interstials by
+          adding a data-google-interstitial="false" attribute to the anchor element or
+          any ancestor of the anchor element.
+        -->
+        <a data-google-interstitial="false" href="https://www.example.com/">
+          This link will never trigger an interstitial
+        </a>
+      </p>
+    </div>
+  </body>
+</html>
