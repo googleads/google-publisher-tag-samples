@@ -80,8 +80,9 @@
     <script>
         googletag.cmd.push(function() {
           // Ensure the first call to display comes after static ad slot
-          // divs are defined.
-          googletag.display(staticSlot);
+          // divs are defined. If you do not have any static ad slots, this
+          // call can be made immediately after services are enabled.
+          googletag.display(anchorSlot);
         });
       </script>
   </body>

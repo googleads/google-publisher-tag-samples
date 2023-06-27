@@ -45,5 +45,5 @@ googletag.cmd.push(() => {
   googletag.enableServices();
 
   // Request and render all previously defined ad slots.
-  googletag.display(staticSlot);
+  googletag.display(anchorSlot);
 });
