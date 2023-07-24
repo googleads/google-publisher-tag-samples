@@ -1,0 +1,16 @@
+{
+  "name": "basic-concepts",
+  "description": "Learn GPT basic concepts by example.",
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/google-publisher-tag": "^1.20230410.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.7"
+  }
+}
