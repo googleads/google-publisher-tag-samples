@@ -7,7 +7,11 @@ introducing more basic GPT concepts. These concepts include:
 * [Key-value targeting][guide_targeting]
 * [Single Request Architecture][guide_sra]
 
+[Learn the basics][guide_basics] of how this
+sample works.
+
 [guide_ad_sizes]: https://developers.google.com/publisher-tag/guides/ad-sizes
+[guide_basics]: https://developers.google.com/publisher-tag/guides/learn-basics
 [guide_sra]: https://developers.google.com/publisher-tag/guides/ad-best-practices#use_single_request_architecture_correctly
 [guide_targeting]: https://developers.google.com/publisher-tag/guides/key-value-targeting
 
