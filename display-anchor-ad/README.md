@@ -30,8 +30,8 @@ look and behave on different devices and in different operating environments.
         `1000px`.
 
 *   **Only request anchor ads on pages/environments where you want an anchor to
-    appear.** For example, don't assume anchors are ineligible on desktop pages,
-    as we may add support in the future.
+    appear.** Anchor ads are eligible to serve to desktop, tablet, and mobile
+    devices.
 
     Note: You can use Chrome DevTools [mobile simulation][simulate_mobile] to
     test anchor ads on mobile from a desktop environment.
