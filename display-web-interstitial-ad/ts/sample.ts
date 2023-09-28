@@ -31,6 +31,11 @@ googletag.cmd.push(() => {
             'Interstitial is loaded.';
       }
     });
+
+    // By default, the detected language of the current page is used to render
+    // interstitial UI elements. This behavior can be overridden by manually
+    // specifying the document language:
+    // googletag.pubads().set("document_language", "en");
   }
 
   // Define static ad slots.
