@@ -17,9 +17,19 @@ googletag.cmd.push(() => {
 
   // Slot returns null if the page or device does not support interstitials.
   if (interstitialSlot) {
-    interstitialSlot.addService(googletag.pubads());
+    // Enable optional interstitial triggers and register the slot.
+    interstitialSlot
+        .setConfig({
+          interstitial: {
+            triggers: {
+              unhideWindow: true,
+            },
+          },
+        })
+        .addService(googletag.pubads());
 
-    document.getElementById('status')!.innerText = 'Interstitial is loading...';
+    document.getElementById('status')!.textContent =
+        'Interstitial is loading...';
 
     // Add event listener to enable navigation once the interstitial loads.
     // If this event doesn't fire, try clearing local storage and refreshing
@@ -27,7 +37,7 @@ googletag.cmd.push(() => {
     googletag.pubads().addEventListener('slotOnload', (event) => {
       if (interstitialSlot === event.slot) {
         document.getElementById('link')!.style.display = 'block';
-        document.getElementById('status')!.innerText =
+        document.getElementById('status')!.textContent =
             'Interstitial is loaded.';
       }
     });

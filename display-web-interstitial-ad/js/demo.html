@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
  Copyright 2020 Google LLC
 
@@ -17,35 +17,45 @@
 
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Web Interstitial Ad Example</title>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
-      window.googletag = window.googletag || {cmd: []};
+      window.googletag = window.googletag || { cmd: [] };
 
       // GPT ad slots
       var interstitialSlot, staticSlot;
 
-      googletag.cmd.push(function() {
+      googletag.cmd.push(function () {
         // Define a web interstitial ad slot.
         interstitialSlot = googletag.defineOutOfPageSlot(
-            '/6355419/Travel/Europe/France/Paris',
-            googletag.enums.OutOfPageFormat.INTERSTITIAL);
+          "/6355419/Travel/Europe/France/Paris",
+          googletag.enums.OutOfPageFormat.INTERSTITIAL
+        );
 
         // Slot returns null if the page or device does not support interstitials.
         if (interstitialSlot) {
-          interstitialSlot.addService(googletag.pubads());
+          // Enable optional interstitial triggers and register the slot.
+          interstitialSlot
+            .setConfig({
+              interstitial: {
+                triggers: {
+                  unhideWindow: true,
+                },
+              },
+            })
+            .addService(googletag.pubads());
 
-          document.getElementById('status').innerText = 'Interstitial is loading...';
+          document.getElementById("status").textContent = "Interstitial is loading...";
 
           // Add event listener to enable navigation once the interstitial loads.
           // If this event doesn't fire, try clearing local storage and refreshing
           // the page.
-          googletag.pubads().addEventListener('slotOnload', function(event) {
+          googletag.pubads().addEventListener("slotOnload", function (event) {
             if (interstitialSlot === event.slot) {
-              document.getElementById('link').style.display = 'block';
-              document.getElementById('status').innerText = 'Interstitial is loaded.';
+              document.getElementById("link").style.display = "block";
+              document.getElementById("status").textContent = "Interstitial is loaded.";
             }
           });
 
@@ -56,8 +66,8 @@
         }
 
         // Define static ad slots.
-        staticSlot = googletag.defineSlot(
-            '/6355419/Travel/Europe', [100, 100], 'static-ad-1')
+        staticSlot = googletag
+          .defineSlot("/6355419/Travel/Europe", [100, 100], "static-ad-1")
           .addService(googletag.pubads());
 
         // Enable SRA and services.
@@ -77,7 +87,7 @@
     </style>
   </head>
   <body>
-    <div id="static-ad-1" style="width: 100px; height: 100px;"></div>
+    <div id="static-ad-1" style="width: 100px; height: 100px"></div>
     <div class="content">
       <span id="status">Web interstitial is not supported on this page.</span>
       <p>
@@ -95,12 +105,12 @@
       </p>
     </div>
     <script>
-        googletag.cmd.push(function() {
-          // Ensure the first call to display comes after static ad slot
-          // divs are defined. If you do not have any static ad slots, this
-          // call can be made immediately after services are enabled.
-          googletag.display(interstitialSlot);
-        });
+      googletag.cmd.push(function () {
+        // Ensure the first call to display comes after static ad slot
+        // divs are defined. If you do not have any static ad slots, this
+        // call can be made immediately after services are enabled.
+        googletag.display(interstitialSlot);
+      });
     </script>
   </body>
 </html>

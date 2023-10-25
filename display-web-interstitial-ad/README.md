@@ -7,7 +7,15 @@ interstitials, see [Traffic web interstitials][admanager_hc_interstitial].
 
 The following user actions are eligible to trigger a web interstitial ad:
 
-* Navigating away from the page in response to a click
+| User action | [API name][ref_docs_interstitialconfig] | Default |
+|---------|-------------|---|
+| Navigating away from the page in response to a click. | N/A | Enabled |
+| Hiding and then returning to the page (for example, by switching tabs). | `unhideWindow` | Disabled |
+
+Important: Default trigger states are
+[configurable in Google Ad Manager][admanager_hc_interstitial]. If these values
+have been modified for your Ad Manager account, they may not match the
+preceding table.
 
 Support for additional user actions may be added in the future. Follow the
 [GPT release notes][guide_rel_notes] for updates.
@@ -58,4 +66,5 @@ Support for additional user actions may be added in the future. Follow the
 [admanager_hc_tcf_purpose]: //support.google.com/admanager/answer/9461778#purposes
 [guide_rel_notes]: //developers.google.com/publisher-tag/release-notes
 [guide_sra]: //developers.google.com/publisher-tag/guides/ad-best-practices#use_single_request_architecture_correctly
+[ref_docs_interstitialconfig]: //developers.google.com/publisher-tag/reference#googletag.config.interstitialconfig
 [simulate_mobile]: //developers.google.com/web/tools/chrome-devtools/device-mode#viewport
