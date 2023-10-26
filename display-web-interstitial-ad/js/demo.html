@@ -38,14 +38,14 @@
         if (interstitialSlot) {
           // Enable optional interstitial triggers and register the slot.
           interstitialSlot
+            .addService(googletag.pubads())
             .setConfig({
               interstitial: {
                 triggers: {
                   unhideWindow: true,
                 },
               },
-            })
-            .addService(googletag.pubads());
+            });
 
           document.getElementById("status").textContent = "Interstitial is loading...";
 
