@@ -1,0 +1,10 @@
+// Test for googletag.Slot.get
+function test_googletag_slot_get() {
+    const slot = googletag
+        .defineSlot('/1234567/sports', [160, 600], 'div')!
+        .set('adsense_background_color', '#FFFFFF')
+        .addService(googletag.pubads());
+
+    slot.get('adsense_background_color');
+    // Returns '#FFFFFF'.
+}

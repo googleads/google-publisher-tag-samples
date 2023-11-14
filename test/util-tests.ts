@@ -1,12 +1,58 @@
 import 'jasmine';
 
+import {Readable} from 'stream';
 import YAML from 'yaml';
 
 import {EleventyPageData} from '../src/model/eleventy-data';
 import {SampleDetails} from '../src/model/sample-data';
+import {JS_BODY_MARKER, parseHeadAndBodyJS} from '../src/util/js-utils';
 import {generateSampleDetails, getSampleDirFromPageData} from '../src/util/template-utils';
 
 describe('Utility', () => {
+  describe('JS utils', () => {
+    const HEAD = 'const x = 1;';
+    const BODY = 'return x;';
+    const BODY_WITH_MARKER =
+        `// [START ${JS_BODY_MARKER}]\n${BODY}\n// [END ${JS_BODY_MARKER}]`;
+
+    it('parses body JS', async () => {
+      const parsedJs =
+          await parseHeadAndBodyJS(Readable.from(BODY_WITH_MARKER));
+      expect(parsedJs.body).toContain(BODY);
+      expect(parsedJs.head).toEqual('');
+    });
+
+    it('parses head JS', async () => {
+      const parsedJs = await parseHeadAndBodyJS(Readable.from(HEAD));
+      expect(parsedJs.body).toEqual('');
+      expect(parsedJs.head).toContain(HEAD);
+    });
+
+    it('parses mixed head and body JS', async () => {
+      const input = `${HEAD}\n${BODY_WITH_MARKER}`;
+      const parsedJs = await parseHeadAndBodyJS(Readable.from(input));
+      expect(parsedJs.body).toContain(BODY);
+      expect(parsedJs.head).toContain(HEAD);
+    });
+
+    it('ignores unknown markers', async () => {
+      const unknownMarker = '// [START foo]\nlet y = 2;\n// [END foo]';
+      const input = `${HEAD}\n${unknownMarker}\n${BODY_WITH_MARKER}`;
+      const parsedJs = await parseHeadAndBodyJS(Readable.from(input));
+      expect(parsedJs.body).toContain(BODY);
+      expect(parsedJs.head).toContain(HEAD);
+      expect(parsedJs.head).toContain(unknownMarker);
+    });
+
+    it('uses same JS target for body and head', async () => {
+      const input = `function foo() {\n${HEAD}\n${BODY_WITH_MARKER}\n}`;
+      const parsedJs = await parseHeadAndBodyJS(Readable.from(input));
+      expect(parsedJs.body).toContain('function');
+      expect(parsedJs.body).toContain(BODY);
+      expect(parsedJs.head).toContain(HEAD);
+    });
+  });
+
   describe('template utils', () => {
     const SAMPLE_DIR = '/test-sample';
     const SAMPLE_DETAILS: SampleDetails = {

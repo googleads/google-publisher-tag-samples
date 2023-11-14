@@ -1,0 +1,6 @@
+// Test for googletag.display
+function test_googletag_display() {
+    googletag.cmd.push(() => {
+        googletag.display('div-1');
+    });
+}
