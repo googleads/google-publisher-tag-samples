@@ -7,7 +7,7 @@
 // Using @types/google-publisher-tag
 // https://www.npmjs.com/package/@types/google-publisher-tag
 
-window.googletag = window.googletag || {cmd: []};
+window.googletag = window.googletag || { cmd: [] };
 
 // Number of seconds to wait before making the second SRA request.
 let waitSeconds = 5;
@@ -15,21 +15,21 @@ let waitSeconds = 5;
 googletag.cmd.push(() => {
   // Define ad slots.
   const slots = [
-    googletag.defineSlot(
-                 '/6355419/Travel/Europe', [728, 90],
-                 'slot-1')!.addService(googletag.pubads()),
-    googletag.defineSlot(
-                 '/6355419/Travel/Europe', [728, 90],
-                 'slot-2')!.addService(googletag.pubads()),
-    googletag.defineSlot(
-                 '/6355419/Travel/Europe', [300, 250],
-                 'slot-3')!.addService(googletag.pubads()),
-    googletag.defineSlot(
-                 '/6355419/Travel/Europe', [300, 250],
-                 'slot-4')!.addService(googletag.pubads()),
-    googletag.defineSlot(
-                 '/6355419/Travel/Europe', [300, 250],
-                 'slot-5')!.addService(googletag.pubads()),
+    googletag
+      .defineSlot("/6355419/Travel/Europe", [728, 90], "slot-1")!
+      .addService(googletag.pubads()),
+    googletag
+      .defineSlot("/6355419/Travel/Europe", [728, 90], "slot-2")!
+      .addService(googletag.pubads()),
+    googletag
+      .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-3")!
+      .addService(googletag.pubads()),
+    googletag
+      .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-4")!
+      .addService(googletag.pubads()),
+    googletag
+      .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-5")!
+      .addService(googletag.pubads()),
   ];
 
   // Disable initial load to precisely control when ads are requested.
@@ -44,8 +44,7 @@ googletag.cmd.push(() => {
 
   // Issue second SRA request (slots 3, 4, and 5) after a delay.
   const interval = setInterval(() => {
-    document.getElementById('seconds')!.textContent =
-        (--waitSeconds).toString();
+    document.getElementById("seconds")!.textContent = (--waitSeconds).toString();
 
     if (waitSeconds === 0) {
       googletag.pubads().refresh(slots.slice(2));

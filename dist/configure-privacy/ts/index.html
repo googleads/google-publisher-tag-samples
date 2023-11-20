@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
  @license
  Copyright 2022 Google LLC. All Rights Reserved.
@@ -7,21 +7,20 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Configure Privacy Settings</title>
-    <script
-      async
-      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Customize privacy settings for GPT ad requests." />
+    <title>Configure privacy settings</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script type="module" src="/sample.ts"></script>
     <style>
       button::after {
-        content: 'OFF';
+        content: "OFF";
         color: red;
         font-weight: bold;
       }
 
-      button[data-enabled='true']::after {
-        content: 'ON';
+      button[data-enabled="true"]::after {
+        content: "ON";
         color: green;
         font-weight: bold;
       }

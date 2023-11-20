@@ -1,0 +1,143 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Customize privacy settings for GPT ad requests." />
+    <title>Configure privacy settings</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      googletag.cmd.push(function () {
+        // Define an ad slot for div with id "banner-ad".
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "banner-ad")
+          .setTargeting("test", "privacy")
+          .addService(googletag.pubads());
+
+        // Enable the PubAdsService.
+        googletag.enableServices();
+      });
+
+      var tfcdEnabled = false;
+      function toggleChildDirectedTreatment() {
+        var button = this;
+
+        // Set to true to enable, false to disable.
+        tfcdEnabled = !tfcdEnabled;
+
+        googletag.cmd.push(function () {
+          googletag.pubads().setPrivacySettings({
+            childDirectedTreatment: tfcdEnabled,
+          });
+
+          // Refresh all ads on the page.
+          googletag.pubads().refresh();
+
+          button.setAttribute("data-enabled", tfcdEnabled.toString());
+        });
+      }
+
+      var npaEnabled = false;
+      function toggleNonPersonalizedAds() {
+        var button = this;
+
+        // Set to true to enable, false to disable.
+        npaEnabled = !npaEnabled;
+
+        googletag.cmd.push(function () {
+          googletag.pubads().setPrivacySettings({
+            nonPersonalizedAds: npaEnabled,
+          });
+
+          // Refresh all ads on the page.
+          googletag.pubads().refresh();
+
+          button.setAttribute("data-enabled", npaEnabled.toString());
+        });
+      }
+
+      var rdpEnabled = false;
+      function toggleRestrictDataProcessing() {
+        var button = this;
+
+        // Set to true to enable, false to disable.
+        rdpEnabled = !rdpEnabled;
+
+        googletag.cmd.push(function () {
+          googletag.pubads().setPrivacySettings({
+            restrictDataProcessing: rdpEnabled,
+          });
+
+          // Refresh all ads on the page.
+          googletag.pubads().refresh();
+
+          button.setAttribute("data-enabled", rdpEnabled.toString());
+        });
+      }
+
+      var tfuaEnabled = false;
+      function toggleUnderAgeOfConsent() {
+        var button = this;
+
+        // Set to true to enable, false to disable.
+        tfuaEnabled = !tfuaEnabled;
+
+        googletag.cmd.push(function () {
+          googletag.pubads().setPrivacySettings({
+            underAgeOfConsent: tfuaEnabled,
+          });
+
+          // Refresh all ads on the page.
+          googletag.pubads().refresh();
+
+          button.setAttribute("data-enabled", tfuaEnabled.toString());
+        });
+      }
+    </script>
+    <style>
+      button::after {
+        content: "OFF";
+        color: red;
+        font-weight: bold;
+      }
+
+      button[data-enabled="true"]::after {
+        content: "ON";
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="banner-ad" style="width: 728px; height: 90px"></div>
+    <div>
+      <button id="tfcdButton">Child Directed Treatment</button>
+      <button id="npaButton">Non-personalized Ads</button>
+      <button id="rdpButton">Restricted Data Processing</button>
+      <button id="tfuaButton">Under Age of Consent</button>
+    </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render an ad for the "banner-ad" slot.
+        googletag.display("banner-ad");
+
+        // Register click event handlers.
+        document
+          .getElementById("tfcdButton")
+          .addEventListener("click", toggleChildDirectedTreatment);
+        document.getElementById("npaButton").addEventListener("click", toggleNonPersonalizedAds);
+        document
+          .getElementById("rdpButton")
+          .addEventListener("click", toggleRestrictDataProcessing);
+        document.getElementById("tfuaButton").addEventListener("click", toggleUnderAgeOfConsent);
+      });
+    </script>
+  </body>
+</html>

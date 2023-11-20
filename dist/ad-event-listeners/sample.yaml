@@ -1,10 +1,8 @@
----
- name: Ad event listeners
- description: Monitor and report on ad events fired by GPT.
- authors:
-   - Google Publisher Tag Team
- skill: Advanced
- keywords:
-   - Events
-   - Multiple ads
-...
+name: Ad event listeners
+description: Monitor and report on ad events fired by GPT.
+authors:
+  - Google Publisher Tag Team
+skill: Advanced
+keywords:
+  - Events
+  - Multiple ads

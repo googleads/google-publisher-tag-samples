@@ -1,0 +1,98 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Precisely control which ad slots are requested when in Single Request Architecture (SRA) mode."
+    />
+    <title>Control SRA batching</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      // Number of seconds to wait before making the second SRA request.
+      var waitSeconds = 5;
+
+      googletag.cmd.push(function () {
+        // Define ad slots.
+        var slots = [
+          googletag
+            .defineSlot("/6355419/Travel/Europe", [728, 90], "slot-1")
+            .addService(googletag.pubads()),
+          googletag
+            .defineSlot("/6355419/Travel/Europe", [728, 90], "slot-2")
+            .addService(googletag.pubads()),
+          googletag
+            .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-3")
+            .addService(googletag.pubads()),
+          googletag
+            .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-4")
+            .addService(googletag.pubads()),
+          googletag
+            .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-5")
+            .addService(googletag.pubads()),
+        ];
+
+        // Disable initial load to precisely control when ads are requested.
+        googletag.pubads().disableInitialLoad();
+
+        // Enable SRA and services.
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+
+        // Issue first SRA request (slots 1 and 2) immediately.
+        googletag.pubads().refresh(slots.slice(0, 2));
+
+        // Issue second SRA request (slots 3, 4, and 5) after a delay.
+        var interval = setInterval(function () {
+          document.getElementById("seconds").textContent = (--waitSeconds).toString();
+
+          if (waitSeconds === 0) {
+            googletag.pubads().refresh(slots.slice(2));
+            clearInterval(interval);
+          }
+        }, 1000);
+      });
+    </script>
+    <style>
+      .ad-slot {
+        border-style: solid;
+        display: block;
+        margin: 1px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <p>SRA request #1</p>
+    </div>
+
+    <div class="row">
+      <div id="slot-1" class="ad-slot" style="height: 90px; width: 728px"></div>
+      <div id="slot-2" class="ad-slot" style="height: 90px; width: 728px"></div>
+    </div>
+
+    <div class="row">
+      <p>SRA request #2 in <span id="seconds">5</span> seconds...</p>
+    </div>
+
+    <div class="row">
+      <div id="slot-3" class="ad-slot" style="height: 250px; width: 300px"></div>
+      <div id="slot-4" class="ad-slot" style="height: 250px; width: 300px"></div>
+      <div id="slot-5" class="ad-slot" style="height: 250px; width: 300px"></div>
+    </div>
+  </body>
+</html>

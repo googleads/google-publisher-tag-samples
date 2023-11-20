@@ -1,58 +1,49 @@
 <!doctype html>
 <!--
- Copyright 2023 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
-
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GPT basic concepts example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Learn GPT basic concepts by example." />
+    <title>GPT basic concepts</title>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
-      window.googletag = window.googletag || {cmd: []};
+      window.googletag = window.googletag || { cmd: [] };
 
-      googletag.cmd.push(function() {
+      googletag.cmd.push(() => {
         // Define a fixed size ad slot, customized with key-value targeting.
-        googletag.defineSlot('/6355419/Travel/Asia', [728, 90], 'banner-ad')
-                 .addService(googletag.pubads())
-                 .setTargeting('color', 'red')
-                 .setTargeting('position', 'atf');
+        googletag
+          .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad")
+          .addService(googletag.pubads())
+          .setTargeting("color", "red")
+          .setTargeting("position", "atf");
 
         // Define an anchor ad slot that sticks to the bottom of the viewport.
         const anchorSlot = googletag.defineOutOfPageSlot(
-          '/6355419/Travel', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR);
+          "/6355419/Travel",
+          googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR,
+        );
 
         // The slot will be null if the page or device does not support anchors.
         if (anchorSlot) {
-          anchorSlot
-              .setTargeting('test', 'anchor')
-              .addService(googletag.pubads());
+          anchorSlot.setTargeting("test", "anchor").addService(googletag.pubads());
 
-          document.getElementById('status').textContent =
-            'Anchor ad is initialized. Scroll page to activate.';
+          document.getElementById("status").textContent =
+            "Anchor ad is initialized. Scroll page to activate.";
         }
 
         // Define a fluid ad slot that adjusts its height to fit the creative
         // content being displayed.
         googletag
-          .defineSlot('/6355419/Travel', ['fluid'], 'native-ad')
+          .defineSlot("/6355419/Travel", ["fluid"], "native-ad")
           .addService(googletag.pubads());
 
         // Configure page-level targeting.
-        googletag.pubads().setTargeting('interests', 'basketball');
+        googletag.pubads().setTargeting("interests", "basketball");
 
         // Enable SRA and services.
         googletag.pubads().enableSingleRequest();
@@ -82,24 +73,23 @@
   </head>
   <body>
     <div class="page-content centered">
-      <div id="banner-ad" style="width: 728px; height: 90px;"></div>
+      <div id="banner-ad" style="width: 728px; height: 90px"></div>
       <!--
-        If the following status is displayed when the page is rendered, try
-        loading the page in a new window or on a different device.
-      -->
+      If the following status is displayed when the page is rendered, try
+      loading the page in a new window or on a different device.
+    -->
       <h1 id="status">Anchor ads are not supported on this page.</h1>
       <!--
-        Spacer used for example purposes only. This positions the native ad
-        container below the fold to encourage scrolling.
-      -->
+      Spacer used for example purposes only. This positions the native ad
+      container below the fold to encourage scrolling.
+    -->
       <div class="spacer"></div>
       <div id="native-ad" class="native-slot"></div>
     </div>
     <script>
-      googletag.cmd.push(function() {
-        // Ensure the first call to display comes after static ad slot
-        // divs are defined.
-        googletag.display('banner-ad');
+      googletag.cmd.push(() => {
+        // Request and render all previously defined ad slots.
+        googletag.display("banner-ad");
       });
     </script>
   </body>

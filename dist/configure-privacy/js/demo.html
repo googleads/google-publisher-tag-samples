@@ -1,98 +1,103 @@
 <!doctype html>
 <!--
- Copyright 2020 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Configure Privacy Settings</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Customize privacy settings for GPT ad requests." />
+    <title>Configure privacy settings</title>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
-      window.googletag = window.googletag || {cmd: []};
-      googletag.cmd.push(function() {
-        googletag.defineSlot('/6355419/Travel',[728, 90], 'banner-ad')
-            .setTargeting('test', 'privacy')
-            .addService(googletag.pubads());
+      window.googletag = window.googletag || { cmd: [] };
+
+      googletag.cmd.push(() => {
+        // Define an ad slot for div with id "banner-ad".
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "banner-ad")
+          .setTargeting("test", "privacy")
+          .addService(googletag.pubads());
+
+        // Enable the PubAdsService.
         googletag.enableServices();
       });
 
-      var tfcdEnabled = false;
-      function toggleChildDirectedTreatment(button) {
+      let tfcdEnabled = false;
+      function toggleChildDirectedTreatment() {
+        const button = this;
+
         // Set to true to enable, false to disable.
         tfcdEnabled = !tfcdEnabled;
 
-        googletag.cmd.push(function() {
+        googletag.cmd.push(() => {
           googletag.pubads().setPrivacySettings({
-            childDirectedTreatment: tfcdEnabled
+            childDirectedTreatment: tfcdEnabled,
           });
 
           // Refresh all ads on the page.
           googletag.pubads().refresh();
 
-          button.setAttribute('data-enabled', tfcdEnabled);
+          button.setAttribute("data-enabled", tfcdEnabled.toString());
         });
       }
 
-      var npaEnabled = false;
-      function toggleNonPersonalizedAds(button) {
+      let npaEnabled = false;
+      function toggleNonPersonalizedAds() {
+        const button = this;
+
         // Set to true to enable, false to disable.
         npaEnabled = !npaEnabled;
 
-        googletag.cmd.push(function() {
+        googletag.cmd.push(() => {
           googletag.pubads().setPrivacySettings({
-            nonPersonalizedAds: npaEnabled
+            nonPersonalizedAds: npaEnabled,
           });
 
           // Refresh all ads on the page.
           googletag.pubads().refresh();
 
-          button.setAttribute('data-enabled', npaEnabled);
+          button.setAttribute("data-enabled", npaEnabled.toString());
         });
       }
 
-      var rdpEnabled = false;
-      function toggleRestrictDataProcessing(button) {
+      let rdpEnabled = false;
+      function toggleRestrictDataProcessing() {
+        const button = this;
+
         // Set to true to enable, false to disable.
         rdpEnabled = !rdpEnabled;
 
-        googletag.cmd.push(function() {
+        googletag.cmd.push(() => {
           googletag.pubads().setPrivacySettings({
-            restrictDataProcessing: rdpEnabled
+            restrictDataProcessing: rdpEnabled,
           });
 
           // Refresh all ads on the page.
           googletag.pubads().refresh();
 
-          button.setAttribute('data-enabled', rdpEnabled);
+          button.setAttribute("data-enabled", rdpEnabled.toString());
         });
       }
 
-      var tfuaEnabled = false;
-      function toggleUnderAgeOfConsent(button) {
+      let tfuaEnabled = false;
+      function toggleUnderAgeOfConsent() {
+        const button = this;
+
         // Set to true to enable, false to disable.
         tfuaEnabled = !tfuaEnabled;
 
-        googletag.cmd.push(function() {
+        googletag.cmd.push(() => {
           googletag.pubads().setPrivacySettings({
-            underAgeOfConsent: tfuaEnabled
+            underAgeOfConsent: tfuaEnabled,
           });
 
           // Refresh all ads on the page.
           googletag.pubads().refresh();
 
-          button.setAttribute('data-enabled', tfuaEnabled);
+          button.setAttribute("data-enabled", tfuaEnabled.toString());
         });
       }
     </script>
@@ -102,6 +107,7 @@
         color: red;
         font-weight: bold;
       }
+
       button[data-enabled="true"]::after {
         content: "ON";
         color: green;
@@ -110,26 +116,28 @@
     </style>
   </head>
   <body>
-    <div id="banner-ad" style="width: 728px; height: 90px;">
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display('banner-ad');
-        });
-      </script>
-    </div>
+    <div id="banner-ad" style="width: 728px; height: 90px"></div>
     <div>
-      <button onclick="toggleChildDirectedTreatment(this);">
-        Child Directed Treatment
-      </button>
-      <button onclick="toggleNonPersonalizedAds(this);">
-        Non-personalized Ads
-      </button>
-      <button onclick="toggleRestrictDataProcessing(this);">
-        Restricted Data Processing
-      </button>
-      <button onclick="toggleUnderAgeOfConsent(this);">
-        Under Age of Consent
-      </button>
+      <button id="tfcdButton">Child Directed Treatment</button>
+      <button id="npaButton">Non-personalized Ads</button>
+      <button id="rdpButton">Restricted Data Processing</button>
+      <button id="tfuaButton">Under Age of Consent</button>
     </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render an ad for the "banner-ad" slot.
+        googletag.display("banner-ad");
+
+        // Register click event handlers.
+        document
+          .getElementById("tfcdButton")
+          .addEventListener("click", toggleChildDirectedTreatment);
+        document.getElementById("npaButton").addEventListener("click", toggleNonPersonalizedAds);
+        document
+          .getElementById("rdpButton")
+          .addEventListener("click", toggleRestrictDataProcessing);
+        document.getElementById("tfuaButton").addEventListener("click", toggleUnderAgeOfConsent);
+      });
+    </script>
   </body>
 </html>

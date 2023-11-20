@@ -1,10 +1,8 @@
----
- name: Collapse empty ad slots
- description: Automatically show/hide ad slots when certain criteria are met.
- authors:
-   - Google Publisher Tag Team
- skill: Advanced
- keywords:
-   - Multiple ads
-   - Performance
-...
+name: Collapse empty ad slots
+description: Automatically show/hide ad slots when certain criteria are met.
+authors:
+  - Google Publisher Tag Team
+skill: Advanced
+keywords:
+  - Multiple ads
+  - Performance

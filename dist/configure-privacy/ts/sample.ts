@@ -7,19 +7,20 @@
 // Using @types/google-publisher-tag
 // https://www.npmjs.com/package/@types/google-publisher-tag
 
-window.googletag = window.googletag || {cmd: []};
+window.googletag = window.googletag || { cmd: [] };
 
 googletag.cmd.push(() => {
   // Define an ad slot for div with id "banner-ad".
-  googletag.defineSlot('/6355419/Travel', [728, 90], 'banner-ad')!
-      .setTargeting('test', 'privacy')
-      .addService(googletag.pubads());
+  googletag
+    .defineSlot("/6355419/Travel", [728, 90], "banner-ad")!
+    .setTargeting("test", "privacy")
+    .addService(googletag.pubads());
 
   // Enable the PubAdsService.
   googletag.enableServices();
 
   // Request and render an ad for the "banner-ad" slot.
-  googletag.display('banner-ad');
+  googletag.display("banner-ad");
 });
 
 let tfcdEnabled = false;
@@ -37,7 +38,7 @@ function toggleChildDirectedTreatment(this: HTMLButtonElement) {
     // Refresh all ads on the page.
     googletag.pubads().refresh();
 
-    button.setAttribute('data-enabled', tfcdEnabled.toString());
+    button.setAttribute("data-enabled", tfcdEnabled.toString());
   });
 }
 
@@ -56,7 +57,7 @@ function toggleNonPersonalizedAds(this: HTMLButtonElement) {
     // Refresh all ads on the page.
     googletag.pubads().refresh();
 
-    button.setAttribute('data-enabled', npaEnabled.toString());
+    button.setAttribute("data-enabled", npaEnabled.toString());
   });
 }
 
@@ -75,7 +76,7 @@ function toggleRestrictDataProcessing(this: HTMLButtonElement) {
     // Refresh all ads on the page.
     googletag.pubads().refresh();
 
-    button.setAttribute('data-enabled', rdpEnabled.toString());
+    button.setAttribute("data-enabled", rdpEnabled.toString());
   });
 }
 
@@ -94,16 +95,12 @@ function toggleUnderAgeOfConsent(this: HTMLButtonElement) {
     // Refresh all ads on the page.
     googletag.pubads().refresh();
 
-    button.setAttribute('data-enabled', tfuaEnabled.toString());
+    button.setAttribute("data-enabled", tfuaEnabled.toString());
   });
 }
 
 // Register click event handlers.
-document.getElementById('tfcdButton')!.addEventListener(
-    'click', toggleChildDirectedTreatment);
-document.getElementById('npaButton')!.addEventListener(
-    'click', toggleNonPersonalizedAds);
-document.getElementById('rdpButton')!.addEventListener(
-    'click', toggleRestrictDataProcessing);
-document.getElementById('tfuaButton')!.addEventListener(
-    'click', toggleUnderAgeOfConsent);
+document.getElementById("tfcdButton")!.addEventListener("click", toggleChildDirectedTreatment);
+document.getElementById("npaButton")!.addEventListener("click", toggleNonPersonalizedAds);
+document.getElementById("rdpButton")!.addEventListener("click", toggleRestrictDataProcessing);
+document.getElementById("tfuaButton")!.addEventListener("click", toggleUnderAgeOfConsent);

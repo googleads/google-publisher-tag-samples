@@ -1,0 +1,40 @@
+{% extends '../../src/_includes/sample-layout.njk'%} 
+{% block html %}
+  <div class="ad-container">
+    <p>Ad slot #1</p>
+    <div id="ad-slot-1" class="ad-slot"></div>
+  </div>
+
+  <div class="ad-container">
+    <p>Ad slot #2</p>
+    <div
+      id="ad-slot-2"
+      class="ad-slot"
+      style="width: 250px; height: 200px"
+    ></div>
+  </div>
+
+  <div class="ad-container">
+    <p>Ad slot #3</p>
+    <div
+      id="ad-slot-3"
+      class="ad-slot"
+      style="width: 200px; height: 150px"
+    ></div>
+  </div>
+
+  <div class="ad-container">
+    <p>Ad slot #4</p>
+    <div id="ad-slot-4" class="ad-slot"></div>
+  </div>
+{% endblock %}
+{% block styles %}
+  div.ad-container {
+    border: solid;
+  }
+
+  div.ad-slot {
+    border-style: dashed;
+    display: inline-block;
+  }
+{% endblock %}

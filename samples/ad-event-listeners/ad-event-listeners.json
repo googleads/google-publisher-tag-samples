@@ -1,0 +1,7 @@
+{
+  "name": "ad-event-listeners",
+  "title": "Ad event listeners",
+  "description": "Monitor and report on ad events fired by GPT.",
+  "skill": "Advanced",
+  "keywords": ["Events", "Multiple ads"]
+}

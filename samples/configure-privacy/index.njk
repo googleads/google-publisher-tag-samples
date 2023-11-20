@@ -1,0 +1,23 @@
+{% extends '../../src/_includes/sample-layout.njk'%}
+{% block html %}
+  <div id="banner-ad" style="width: 728px; height: 90px"></div>
+  <div>
+    <button id="tfcdButton">Child Directed Treatment</button>
+    <button id="npaButton">Non-personalized Ads</button>
+    <button id="rdpButton">Restricted Data Processing</button>
+    <button id="tfuaButton">Under Age of Consent</button>
+  </div>
+{% endblock %}
+{% block styles %}
+  button::after {
+    content: 'OFF';
+    color: red;
+    font-weight: bold;
+  }
+
+  button[data-enabled='true']::after {
+    content: 'ON';
+    color: green;
+    font-weight: bold;
+  }
+{% endblock %}
