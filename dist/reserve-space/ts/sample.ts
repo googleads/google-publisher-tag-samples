@@ -7,18 +7,18 @@
 // Using @types/google-publisher-tag
 // https://www.npmjs.com/package/@types/google-publisher-tag
 
-window.googletag = window.googletag || {cmd: []};
+window.googletag = window.googletag || { cmd: [] };
 
 googletag.cmd.push(() => {
-  googletag.defineSlot(
-               '/6355419/Travel/Europe', [300, 250],
-               'slot-1')!.addService(googletag.pubads());
-  googletag.defineSlot(
-               '/6355419/Travel/Europe', [300, 250],
-               'slot-2')!.addService(googletag.pubads());
-  googletag.defineSlot(
-               '/6355419/Travel/Europe', [300, 250],
-               'slot-3')!.addService(googletag.pubads());
+  googletag
+    .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-1")!
+    .addService(googletag.pubads());
+  googletag
+    .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-2")!
+    .addService(googletag.pubads());
+  googletag
+    .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-3")!
+    .addService(googletag.pubads());
 
   // Enable SRA and services.
   googletag.pubads().enableSingleRequest();
@@ -26,7 +26,7 @@ googletag.cmd.push(() => {
 });
 
 // Register click event handlers.
-document.getElementById('loadAdsButton')!.addEventListener('click', () => {
+document.getElementById("loadAdsButton")!.addEventListener("click", () => {
   // Request and render all previously defined ad slots.
-  googletag.cmd.push(() => googletag.display('slot-3'));
+  googletag.cmd.push(() => googletag.display("slot-3"));
 });

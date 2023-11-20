@@ -1,0 +1,7 @@
+{
+  "name": "reserve-space",
+  "title": "Reserve space for ads",
+  "description": "Minimize layout shift by reserving space for ads.",
+  "skill": "Beginner",
+  "keywords": ["Multiple ads"]
+}

@@ -1,37 +1,31 @@
 <!doctype html>
 <!--
- Copyright 2020 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
-
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Lazy loading example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Defer the requesting and rendering of ads." />
+    <title>Lazy loading</title>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
-      window.googletag = window.googletag || {cmd: []};
+      window.googletag = window.googletag || { cmd: [] };
 
-      googletag.cmd.push(function() {
-        googletag.defineSlot('/6355419/Travel', [728, 90], 'div-1')
-          .setTargeting('test', 'lazyload')
+      googletag.cmd.push(() => {
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "div-1")
+          .setTargeting("test", "lazyload")
           .addService(googletag.pubads());
-        googletag.defineSlot('/6355419/Travel', [728, 90], 'div-2')
-          .setTargeting('test', 'lazyload')
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "div-2")
+          .setTargeting("test", "lazyload")
           .addService(googletag.pubads());
-        googletag.defineSlot('/6355419/Travel', [728, 90], 'div-3')
-          .setTargeting('test', 'lazyload')
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "div-3")
+          .setTargeting("test", "lazyload")
           .addService(googletag.pubads());
 
         // Some examples of ways to enable lazy loading below.
@@ -42,7 +36,7 @@
 
         // B) Enable without lazy fetching. Additional calls override previous
         // ones.
-        googletag.pubads().enableLazyLoad({fetchMarginPercent: -1});
+        googletag.pubads().enableLazyLoad({ fetchMarginPercent: -1 });
 
         // C) Enable lazy loading with...
         googletag.pubads().enableLazyLoad({
@@ -52,16 +46,16 @@
           renderMarginPercent: 200,
           // Double the above values on mobile, where viewports are smaller
           // and users tend to scroll faster.
-          mobileScaling: 2.0
+          mobileScaling: 2.0,
         });
 
         // Register event handlers to observe lazy loading behavior.
-        googletag.pubads().addEventListener('slotRequested', function(event) {
-          updateSlotStatus(event.slot.getSlotElementId(), 'fetched');
+        googletag.pubads().addEventListener("slotRequested", (event) => {
+          updateSlotStatus(event.slot.getSlotElementId(), "fetched");
         });
 
-        googletag.pubads().addEventListener('slotOnload', function(event) {
-          updateSlotStatus(event.slot.getSlotElementId(), 'rendered');
+        googletag.pubads().addEventListener("slotOnload", (event) => {
+          updateSlotStatus(event.slot.getSlotElementId(), "rendered");
         });
 
         // Enable SRA and services.
@@ -70,9 +64,9 @@
       });
 
       function updateSlotStatus(slotId, state) {
-        var elem = document.getElementById(slotId + '-' + state);
-        elem.className = 'activated';
-        elem.innerText = 'Yes';
+        const elem = document.getElementById(slotId + "-" + state);
+        elem.className = "activated";
+        elem.innerText = "Yes";
       }
     </script>
     <style>
@@ -116,24 +110,24 @@
   </head>
   <body>
     <!--
-       As defined by lazy load settings, initially:
-       1. Slot 1 will be fetched and rendered on mobile and desktop.
-       2. Slot 2 will be fetched on mobile and desktop, but will not be rendered on desktop.
-       3. Slot 3 will be fetched on mobile and desktop, but rendered on neither.
+      As defined by lazy load settings, initially:
+      1. Slot 1 will be fetched and rendered on mobile and desktop.
+      2. Slot 2 will be fetched on mobile and desktop, but will not be rendered on desktop.
+      3. Slot 3 will be fetched on mobile and desktop, but rendered on neither.
     -->
 
     <div class="main-content">
-      <div id="div-1" class="ad-slot" style="height: 90px; width: 728px;"></div>
+      <div id="div-1" class="ad-slot" style="height: 90px; width: 728px"></div>
 
       <!-- 3 viewport tall div to place next slot 3 viewports away. -->
-      <div style="height:300vh"></div>
+      <div style="height: 300vh"></div>
 
-      <div id="div-2" class="ad-slot" style="height: 90px; width: 728px;"></div>
+      <div id="div-2" class="ad-slot" style="height: 90px; width: 728px"></div>
 
       <!-- 9 viewport tall div to place next slot 12 viewports away. -->
-      <div style="height:900vh"></div>
+      <div style="height: 900vh"></div>
 
-      <div id="div-3" class="ad-slot" style="height: 90px; width: 728px;"></div>
+      <div id="div-3" class="ad-slot" style="height: 90px; width: 728px"></div>
     </div>
 
     <div class="status-panel">
@@ -159,13 +153,13 @@
           <td id="div-3-rendered">No</td>
         </tr>
       </table>
-      <p>
-        Scroll the container below to lazily load the ad slots.
-      </p>
+      <p>Scroll the container below to lazily load the ad slots.</p>
     </div>
-
     <script>
-      googletag.cmd.push(function() { googletag.display('div-1'); });
+      googletag.cmd.push(function () {
+        // Request all previously defined ad slots.
+        googletag.display("div-1");
+      });
     </script>
   </body>
 </html>

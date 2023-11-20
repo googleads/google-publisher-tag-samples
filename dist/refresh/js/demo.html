@@ -1,113 +1,105 @@
 <!doctype html>
 <!--
- Copyright 2020 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
-
 <html>
   <head>
-  <title>Refresh ad slots example</title>
-  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-  <script>
-    window.googletag = window.googletag || {cmd: []};
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Use GPT to dynamically reload ads." />
+    <title>Refresh ad slots</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
 
-    // GPT slots
-    var adSlot1, adSlot2;
+      let adSlot1;
+      let adSlot2;
 
-    googletag.cmd.push(function() {
-      // Define the first slot
-      adSlot1 = googletag.defineSlot('/6355419/Travel',[728, 90],'leaderboard1')
-          .setTargeting('test', 'refresh')
+      googletag.cmd.push(() => {
+        // Define the first slot.
+        adSlot1 = googletag
+          .defineSlot("/6355419/Travel", [728, 90], "leaderboard1")
+          .setTargeting("test", "refresh")
           .addService(googletag.pubads());
 
-      // Define the second slot
-      adSlot2 = googletag.defineSlot('/6355419/Travel',[728, 90],'leaderboard2')
-          .setTargeting('test', 'refresh')
+        // Define the second slot.
+        adSlot2 = googletag
+          .defineSlot("/6355419/Travel", [728, 90], "leaderboard2")
+          .setTargeting("test", "refresh")
           .addService(googletag.pubads());
 
-      // Configure SRA
-      googletag.pubads().enableSingleRequest();
-
-      // Start ad fetching
-      googletag.enableServices();
-    });
-
-    // Button action which refreshes the first slot
-    var refreshFirstSlot = function() {
-      googletag.cmd.push(function() {
-        googletag.pubads().refresh([adSlot1]);
+        // Enable SRA and services.
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
       });
-    };
 
-    // Button action which refreshes the second slot
-    var refreshSecondSlot = function() {
-      googletag.cmd.push(function() {
-        googletag.pubads().refresh([adSlot2]);
-      });
-    };
+      // Button action which refreshes the first slot
+      function refreshFirstSlot() {
+        googletag.cmd.push(() => {
+          googletag.pubads().refresh([adSlot1]);
+        });
+      }
 
-    // Button action which refreshes all slots
-    var refreshAllSlots = function() {
-      googletag.cmd.push(function() {
-        googletag.pubads().refresh();
-      });
-    };
+      // Button action which refreshes the second slot
+      function refreshSecondSlot() {
+        googletag.cmd.push(() => {
+          googletag.pubads().refresh([adSlot2]);
+        });
+      }
 
-    // Button action which clears all slots
-    // Note: calling PubAdsService.clear() removes any currently displayed ads
-    // and replaces them with blank content, leaving the slots intact so they
-    // can be repopulated later.
-    var clearAllSlots = function() {
-      googletag.cmd.push(function() {
-        googletag.pubads().clear();
-      });
-    };
-  </script>
+      // Button action which refreshes all slots
+      function refreshAllSlots() {
+        googletag.cmd.push(() => {
+          googletag.pubads().refresh();
+        });
+      }
+
+      // Button action which clears all slots
+      // Note: calling PubAdsService.clear() removes any currently displayed ads
+      // and replaces them with blank content, leaving the slots intact so they
+      // can be repopulated later.
+      function clearAllSlots() {
+        googletag.cmd.push(() => {
+          googletag.pubads().clear();
+        });
+      }
+    </script>
+    <style></style>
   </head>
-
   <body>
     <div>
       <h1>GPT Training - Slot Refresh</h1>
-      <div id='leaderboard1' style="width:728px;height:90px;">
-        <script>
-          googletag.cmd.push(function() {
-            googletag.display('leaderboard1');
-          });
-        </script>
-      </div>
+      <div id="leaderboard1" style="width: 728px; height: 90px"></div>
 
-      <div id='leaderboard2' style="width:728px;height:90px;">
-        <script>
-          googletag.cmd.push(function() {
-            googletag.display('leaderboard2');
-          });
-        </script>
-      </div>
+      <div id="leaderboard2" style="width: 728px; height: 90px"></div>
     </div>
 
     <div>
       <!-- Refresh the first slot -->
-      <button onclick="refreshFirstSlot();">Refresh Top Ad</button>
+      <button id="refreshTopButton">Refresh Top Ad</button>
 
       <!-- Refresh the second slot -->
-      <button onclick="refreshSecondSlot();">Refresh Bottom Ad</button>
+      <button id="refreshBottomButton">Refresh Bottom Ad</button>
 
       <!-- Refresh both slots -->
-      <button onclick="refreshAllSlots();">Refresh All Ads</button>
+      <button id="refreshAllButton">Refresh All Ads</button>
 
       <!-- Clear slots -->
-      <button onclick="clearAllSlots();">Clear All Ads</button>
+      <button id="clearAllButton">Clear All Ads</button>
     </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render all previously defined ad slots.
+        googletag.display("leaderboard1");
+
+        // Register click event handlers.
+        document.getElementById("refreshTopButton").addEventListener("click", refreshFirstSlot);
+        document.getElementById("refreshBottomButton").addEventListener("click", refreshSecondSlot);
+        document.getElementById("refreshAllButton").addEventListener("click", refreshAllSlots);
+        document.getElementById("clearAllButton").addEventListener("click", clearAllSlots);
+      });
+    </script>
   </body>
 </html>

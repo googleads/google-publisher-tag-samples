@@ -1,0 +1,87 @@
+{% extends '../../src/_includes/sample-layout.njk'%}
+{% block html %}
+  <!--
+      As defined by lazy load settings, initially:
+      1. Slot 1 will be fetched and rendered on mobile and desktop.
+      2. Slot 2 will be fetched on mobile and desktop, but will not be rendered on desktop.
+      3. Slot 3 will be fetched on mobile and desktop, but rendered on neither.
+    -->
+
+  <div class="main-content">
+    <div id="div-1" class="ad-slot" style="height: 90px; width: 728px"></div>
+
+    <!-- 3 viewport tall div to place next slot 3 viewports away. -->
+    <div style="height: 300vh"></div>
+
+    <div id="div-2" class="ad-slot" style="height: 90px; width: 728px"></div>
+
+    <!-- 9 viewport tall div to place next slot 12 viewports away. -->
+    <div style="height: 900vh"></div>
+
+    <div id="div-3" class="ad-slot" style="height: 90px; width: 728px"></div>
+  </div>
+
+  <div class="status-panel">
+    <table>
+      <tr>
+        <th>Ad Slot</th>
+        <th>Fetched?</th>
+        <th>Rendered?</th>
+      </tr>
+      <tr>
+        <td class="slot-name">Ad Slot 1</td>
+        <td id="div-1-fetched">No</td>
+        <td id="div-1-rendered">No</td>
+      </tr>
+      <tr>
+        <td class="slot-name">Ad Slot 2</td>
+        <td id="div-2-fetched">No</td>
+        <td id="div-2-rendered">No</td>
+      </tr>
+      <tr>
+        <td class="slot-name">Ad Slot 3</td>
+        <td id="div-3-fetched">No</td>
+        <td id="div-3-rendered">No</td>
+      </tr>
+    </table>
+    <p>Scroll the container below to lazily load the ad slots.</p>
+  </div>
+{% endblock %}
+{% block styles %}
+  div.ad-slot {
+    border-style: dashed;
+    display: block;
+    margin: auto;
+  }
+
+  div.main-content {
+    background-color: lightsteelblue;
+    margin-top: 125px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  div.status-panel {
+    background: white;
+    height: 125px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  table th {
+    text-align: center;
+  }
+
+  table td:not(.slot-name) {
+    background-color: lightsalmon;
+  }
+
+  table td.activated {
+    background-color: lightgreen;
+  }
+{% endblock %}

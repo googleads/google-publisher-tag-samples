@@ -1,12 +1,9 @@
----
- name: Key-value targeting
- description: >
-   Use key-value targeting to control the ads eligible to serve to specific ad
-   slots.
- authors:
-   - Google Publisher Tag Team
- skill: Beginner
- keywords:
-   - Multiple ads
-   - Targeting
-...
+name: Key-value targeting
+description: Use key-value targeting to control the ads eligible to serve to
+  specific ad slots.
+authors:
+  - Google Publisher Tag Team
+skill: Beginner
+keywords:
+  - Multiple ads
+  - Targeting

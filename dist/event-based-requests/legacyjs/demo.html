@@ -1,0 +1,50 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Request GPT ads based on events." />
+    <title>Event-based ad requests</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      googletag.cmd.push(function () {
+        // Define the ad slot.
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "div-for-slot")
+          .setTargeting("test", "event")
+          .addService(googletag.pubads());
+
+        // Disable initial load.
+        // This prevents GPT from automatically fetching ads when display is called.
+        googletag.pubads().disableInitialLoad();
+        googletag.enableServices();
+      });
+    </script>
+    <style></style>
+  </head>
+  <body>
+    <div id="div-for-slot" style="width: 300px; height: 250px"></div>
+    <button id="showAdButton">Show/Refresh Ad</button>
+    <script>
+      googletag.cmd.push(function () {
+        // Register the ad slot.
+        // An ad will not be fetched until refresh is called.
+        googletag.display("div-for-slot");
+
+        // Register click event handler.
+        document.getElementById("showAdButton").addEventListener("click", function () {
+          googletag.cmd.push(function () {
+            googletag.pubads().refresh();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

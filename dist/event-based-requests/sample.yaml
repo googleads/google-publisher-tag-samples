@@ -1,7 +1,5 @@
----
- name: Event-based ad requests
- description: Request GPT ads based on events.
- authors:
-   - Google Publisher Tag Team
- skill: Advanced
-...
+name: Event-based ad requests
+description: Request GPT ads based on events.
+authors:
+  - Google Publisher Tag Team
+skill: Advanced

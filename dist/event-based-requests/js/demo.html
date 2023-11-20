@@ -1,49 +1,50 @@
 <!doctype html>
 <!--
- Copyright 2020 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
-
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Event-based ad requests example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Request GPT ads based on events." />
+    <title>Event-based ad requests</title>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
-      window.googletag = window.googletag || {cmd: []};
+      window.googletag = window.googletag || { cmd: [] };
 
-      googletag.cmd.push(function() {
-        googletag.defineSlot('/6355419/Travel',[728, 90], 'div-for-slot')
-            .setTargeting('test', 'event')
-            .addService(googletag.pubads());
+      googletag.cmd.push(() => {
+        // Define the ad slot.
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "div-for-slot")
+          .setTargeting("test", "event")
+          .addService(googletag.pubads());
+
+        // Disable initial load.
+        // This prevents GPT from automatically fetching ads when display is called.
         googletag.pubads().disableInitialLoad();
         googletag.enableServices();
       });
     </script>
+    <style></style>
   </head>
   <body>
-    <div id="div-for-slot" style="width: 300px; height: 250px;">
-      <script>
-        googletag.cmd.push(function() {
-          // This will only register the slot.
-          // Ad will be fetched only when refresh is called.
-          googletag.display('div-for-slot');
+    <div id="div-for-slot" style="width: 300px; height: 250px"></div>
+    <button id="showAdButton">Show/Refresh Ad</button>
+    <script>
+      googletag.cmd.push(() => {
+        // Register the ad slot.
+        // An ad will not be fetched until refresh is called.
+        googletag.display("div-for-slot");
+
+        // Register click event handler.
+        document.getElementById("showAdButton").addEventListener("click", () => {
+          googletag.cmd.push(() => {
+            googletag.pubads().refresh();
+          });
         });
-      </script>
-    </div>
-    <button onclick="googletag.cmd.push(function() { googletag.pubads().refresh(); });">
-      Show/Refresh Ad
-    </button>
+      });
+    </script>
   </body>
 </html>

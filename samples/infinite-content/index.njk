@@ -1,0 +1,22 @@
+{% extends '../../src/_includes/sample-layout.njk'%}
+{% block html %}
+  <h1>GPT Test Page - Infinite Content</h1>
+
+  <!-- First ad -->
+  <div id="leaderboard"></div>
+
+  <!-- Button to load more content dynamically. -->
+  <button id="addContentButton">More Content</button>
+{% endblock %}
+{% block styles %}
+  body > div {
+    margin-bottom: 5em;
+    border: solid 1px black;
+    width: 728px;
+  }
+
+  body > button {
+    position: fixed;
+    bottom: 10px;
+  }
+{% endblock %}

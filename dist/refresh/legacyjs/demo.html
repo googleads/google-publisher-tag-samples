@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Use GPT to dynamically reload ads." />
+    <title>Refresh ad slots</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      var adSlot1;
+      var adSlot2;
+
+      googletag.cmd.push(function () {
+        // Define the first slot.
+        adSlot1 = googletag
+          .defineSlot("/6355419/Travel", [728, 90], "leaderboard1")
+          .setTargeting("test", "refresh")
+          .addService(googletag.pubads());
+
+        // Define the second slot.
+        adSlot2 = googletag
+          .defineSlot("/6355419/Travel", [728, 90], "leaderboard2")
+          .setTargeting("test", "refresh")
+          .addService(googletag.pubads());
+
+        // Enable SRA and services.
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+      });
+
+      // Button action which refreshes the first slot
+      function refreshFirstSlot() {
+        googletag.cmd.push(function () {
+          googletag.pubads().refresh([adSlot1]);
+        });
+      }
+
+      // Button action which refreshes the second slot
+      function refreshSecondSlot() {
+        googletag.cmd.push(function () {
+          googletag.pubads().refresh([adSlot2]);
+        });
+      }
+
+      // Button action which refreshes all slots
+      function refreshAllSlots() {
+        googletag.cmd.push(function () {
+          googletag.pubads().refresh();
+        });
+      }
+
+      // Button action which clears all slots
+      // Note: calling PubAdsService.clear() removes any currently displayed ads
+      // and replaces them with blank content, leaving the slots intact so they
+      // can be repopulated later.
+      function clearAllSlots() {
+        googletag.cmd.push(function () {
+          googletag.pubads().clear();
+        });
+      }
+    </script>
+    <style></style>
+  </head>
+  <body>
+    <div>
+      <h1>GPT Training - Slot Refresh</h1>
+      <div id="leaderboard1" style="width: 728px; height: 90px"></div>
+
+      <div id="leaderboard2" style="width: 728px; height: 90px"></div>
+    </div>
+
+    <div>
+      <!-- Refresh the first slot -->
+      <button id="refreshTopButton">Refresh Top Ad</button>
+
+      <!-- Refresh the second slot -->
+      <button id="refreshBottomButton">Refresh Bottom Ad</button>
+
+      <!-- Refresh both slots -->
+      <button id="refreshAllButton">Refresh All Ads</button>
+
+      <!-- Clear slots -->
+      <button id="clearAllButton">Clear All Ads</button>
+    </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render all previously defined ad slots.
+        googletag.display("leaderboard1");
+
+        // Register click event handlers.
+        document.getElementById("refreshTopButton").addEventListener("click", refreshFirstSlot);
+        document.getElementById("refreshBottomButton").addEventListener("click", refreshSecondSlot);
+        document.getElementById("refreshAllButton").addEventListener("click", refreshAllSlots);
+        document.getElementById("clearAllButton").addEventListener("click", clearAllSlots);
+      });
+    </script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
  @license
  Copyright 2022 Google LLC. All Rights Reserved.
@@ -7,11 +7,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Lazy loading example</title>
-    <script
-      async
-      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Defer the requesting and rendering of ads." />
+    <title>Lazy loading</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script type="module" src="/sample.ts"></script>
     <style>
       div.ad-slot {
@@ -54,10 +53,10 @@
   </head>
   <body>
     <!--
-       As defined by lazy load settings, initially:
-       1. Slot 1 will be fetched and rendered on mobile and desktop.
-       2. Slot 2 will be fetched on mobile and desktop, but will not be rendered on desktop.
-       3. Slot 3 will be fetched on mobile and desktop, but rendered on neither.
+      As defined by lazy load settings, initially:
+      1. Slot 1 will be fetched and rendered on mobile and desktop.
+      2. Slot 2 will be fetched on mobile and desktop, but will not be rendered on desktop.
+      3. Slot 3 will be fetched on mobile and desktop, but rendered on neither.
     -->
 
     <div class="main-content">

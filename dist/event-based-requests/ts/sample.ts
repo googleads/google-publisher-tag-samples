@@ -7,13 +7,14 @@
 // Using @types/google-publisher-tag
 // https://www.npmjs.com/package/@types/google-publisher-tag
 
-window.googletag = window.googletag || {cmd: []};
+window.googletag = window.googletag || { cmd: [] };
 
 googletag.cmd.push(() => {
   // Define the ad slot.
-  googletag.defineSlot('/6355419/Travel', [728, 90], 'div-for-slot')!
-      .setTargeting('test', 'event')
-      .addService(googletag.pubads());
+  googletag
+    .defineSlot("/6355419/Travel", [728, 90], "div-for-slot")!
+    .setTargeting("test", "event")
+    .addService(googletag.pubads());
 
   // Disable initial load.
   // This prevents GPT from automatically fetching ads when display is called.
@@ -22,11 +23,11 @@ googletag.cmd.push(() => {
 
   // Register the ad slot.
   // An ad will not be fetched until refresh is called.
-  googletag.display('div-for-slot');
+  googletag.display("div-for-slot");
 });
 
 // Register click event handler.
-document.getElementById('showAdButton')!.addEventListener('click', () => {
+document.getElementById("showAdButton")!.addEventListener("click", () => {
   googletag.cmd.push(() => {
     googletag.pubads().refresh();
   });

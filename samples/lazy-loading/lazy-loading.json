@@ -1,0 +1,8 @@
+{
+  "name": "lazy-loading",
+  "title": "Lazy loading",
+  "description": "Defer the requesting and rendering of ads.",
+  "embed": false,
+  "skill": "Advanced",
+  "keywords": ["Events", "Multiple ads", "Performance"]
+}
