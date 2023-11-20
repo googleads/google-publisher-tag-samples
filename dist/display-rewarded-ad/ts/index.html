@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
  @license
  Copyright 2022 Google LLC. All Rights Reserved.
@@ -7,12 +7,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rewarded Ad Example</title>
-    <script
-      async
-      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display a GPT-managed rewarded ad." />
+    <title>Display a rewarded ad</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script type="module" src="/sample.ts"></script>
     <style>
       .modal {
@@ -47,12 +45,12 @@
         display: none;
       }
 
-      .modal[data-type='grant'] .grantButtons,
-      .modal[data-type='reward'] .rewardButtons {
+      .modal[data-type="grant"] .grantButtons,
+      .modal[data-type="reward"] .rewardButtons {
         display: block;
       }
 
-      .modal input[type='button'] {
+      .modal input[type="button"] {
         padding: 0.5rem;
         background: blue;
         border: none;

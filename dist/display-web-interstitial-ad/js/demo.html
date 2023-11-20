@@ -1,58 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
- Copyright 2020 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
-
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web Interstitial Ad Example</title>
+    <meta name="description" content="Display a GPT-managed web interstitial ad." />
+    <title>Display a web interstitial ad</title>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
       window.googletag = window.googletag || { cmd: [] };
 
-      // GPT ad slots
-      var interstitialSlot, staticSlot;
+      let interstitialSlot;
 
-      googletag.cmd.push(function () {
+      googletag.cmd.push(() => {
         // Define a web interstitial ad slot.
         interstitialSlot = googletag.defineOutOfPageSlot(
           "/6355419/Travel/Europe/France/Paris",
-          googletag.enums.OutOfPageFormat.INTERSTITIAL
+          googletag.enums.OutOfPageFormat.INTERSTITIAL,
         );
 
         // Slot returns null if the page or device does not support interstitials.
         if (interstitialSlot) {
           // Enable optional interstitial triggers and register the slot.
-          interstitialSlot
-            .addService(googletag.pubads())
-            .setConfig({
-              interstitial: {
-                triggers: {
-                  unhideWindow: true,
-                },
+          interstitialSlot.addService(googletag.pubads()).setConfig({
+            interstitial: {
+              triggers: {
+                unhideWindow: true,
               },
-            });
+            },
+          });
 
           document.getElementById("status").textContent = "Interstitial is loading...";
 
           // Add event listener to enable navigation once the interstitial loads.
           // If this event doesn't fire, try clearing local storage and refreshing
           // the page.
-          googletag.pubads().addEventListener("slotOnload", function (event) {
+          googletag.pubads().addEventListener("slotOnload", (event) => {
             if (interstitialSlot === event.slot) {
               document.getElementById("link").style.display = "block";
               document.getElementById("status").textContent = "Interstitial is loaded.";
@@ -66,7 +53,7 @@
         }
 
         // Define static ad slots.
-        staticSlot = googletag
+        googletag
           .defineSlot("/6355419/Travel/Europe", [100, 100], "static-ad-1")
           .addService(googletag.pubads());
 
@@ -95,9 +82,9 @@
       </p>
       <p>
         <!--
-          You can prevent specific links from triggering GPT-managed web interstials by
-          adding a data-google-interstitial="false" attribute to the anchor element or
-          any ancestor of the anchor element.
+          You can prevent specific links from triggering GPT-managed web
+          interstials by adding a data-google-interstitial="false" attribute to
+          the anchor element or any ancestor of the anchor element.
         -->
         <a data-google-interstitial="false" href="https://www.example.com/">
           This link will never trigger an interstitial
@@ -105,7 +92,7 @@
       </p>
     </div>
     <script>
-      googletag.cmd.push(function () {
+      googletag.cmd.push(() => {
         // Ensure the first call to display comes after static ad slot
         // divs are defined. If you do not have any static ad slots, this
         // call can be made immediately after services are enabled.

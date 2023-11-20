@@ -1,0 +1,40 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display a pop-up, pop-under, or floating ad." />
+    <title>Display an out-of-page ad</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      googletag.cmd.push(function () {
+        // Use defineOutOfPageSlot instead of defineSlot when working with
+        // out-of-page ads.
+        googletag
+          .defineOutOfPageSlot("/6355419/Travel", "out-of-page-ad")
+          .setTargeting("test", "outofpage")
+          .addService(googletag.pubads());
+
+        // Enable the PubAdsService.
+        googletag.enableServices();
+      });
+    </script>
+    <style></style>
+  </head>
+  <body>
+    <div id="out-of-page-ad"></div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render an ad for the "out-of-page-ad" slot.
+        googletag.display("out-of-page-ad");
+      });
+    </script>
+  </body>
+</html>

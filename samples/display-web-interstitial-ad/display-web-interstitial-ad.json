@@ -1,0 +1,8 @@
+{
+  "name": "display-web-interstitial-ad",
+  "title": "Display a web interstitial ad",
+  "description": "Display a GPT-managed web interstitial ad.",
+  "embed": false,
+  "skill": "Beginner",
+  "keywords": ["Multiple ads"]
+}

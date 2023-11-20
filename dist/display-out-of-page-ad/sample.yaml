@@ -1,7 +1,5 @@
----
- name: Display an out-of-page ad
- description: Display a pop-up, pop-under, or floating ad.
- authors:
-   - Google Publisher Tag Team
- skill: Beginner
-...
+name: Display an out-of-page ad
+description: Display a pop-up, pop-under, or floating ad.
+authors:
+  - Google Publisher Tag Team
+skill: Beginner

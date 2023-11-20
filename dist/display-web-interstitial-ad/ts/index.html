@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
  @license
  Copyright 2022 Google LLC. All Rights Reserved.
@@ -8,11 +8,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web Interstitial Ad Example</title>
-    <script
-      async
-      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-    ></script>
+    <meta name="description" content="Display a GPT-managed web interstitial ad." />
+    <title>Display a web interstitial ad</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script type="module" src="/sample.ts"></script>
     <style>
       #link {
@@ -34,9 +32,9 @@
       </p>
       <p>
         <!--
-          You can prevent specific links from triggering GPT-managed web interstials by
-          adding a data-google-interstitial="false" attribute to the anchor element or
-          any ancestor of the anchor element.
+          You can prevent specific links from triggering GPT-managed web
+          interstials by adding a data-google-interstitial="false" attribute to
+          the anchor element or any ancestor of the anchor element.
         -->
         <a data-google-interstitial="false" href="https://www.example.com/">
           This link will never trigger an interstitial

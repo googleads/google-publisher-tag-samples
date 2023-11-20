@@ -7,18 +7,17 @@
 // Using @types/google-publisher-tag
 // https://www.npmjs.com/package/@types/google-publisher-tag
 
-window.googletag = window.googletag || {cmd: []};
+window.googletag = window.googletag || { cmd: [] };
 
 googletag.cmd.push(() => {
   // Define an ad slot for div with id "banner-ad".
   googletag
-      .defineSlot(
-          '/6355419/Travel/Europe/France/Paris', [300, 250],
-          'banner-ad')!.addService(googletag.pubads());
+    .defineSlot("/6355419/Travel/Europe/France/Paris", [300, 250], "banner-ad")!
+    .addService(googletag.pubads());
 
   // Enable the PubAdsService.
   googletag.enableServices();
 
   // Request and render an ad for the "banner-ad" slot.
-  googletag.display('banner-ad');
+  googletag.display("banner-ad");
 });

@@ -1,0 +1,103 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display a GPT-managed web interstitial ad." />
+    <title>Display a web interstitial ad</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      var interstitialSlot;
+
+      googletag.cmd.push(function () {
+        // Define a web interstitial ad slot.
+        interstitialSlot = googletag.defineOutOfPageSlot(
+          "/6355419/Travel/Europe/France/Paris",
+          googletag.enums.OutOfPageFormat.INTERSTITIAL,
+        );
+
+        // Slot returns null if the page or device does not support interstitials.
+        if (interstitialSlot) {
+          // Enable optional interstitial triggers and register the slot.
+          interstitialSlot.addService(googletag.pubads()).setConfig({
+            interstitial: {
+              triggers: {
+                unhideWindow: true,
+              },
+            },
+          });
+
+          document.getElementById("status").textContent = "Interstitial is loading...";
+
+          // Add event listener to enable navigation once the interstitial loads.
+          // If this event doesn't fire, try clearing local storage and refreshing
+          // the page.
+          googletag.pubads().addEventListener("slotOnload", function (event) {
+            if (interstitialSlot === event.slot) {
+              document.getElementById("link").style.display = "block";
+              document.getElementById("status").textContent = "Interstitial is loaded.";
+            }
+          });
+
+          // By default, the detected language of the current page is used to render
+          // interstitial UI elements. This behavior can be overridden by manually
+          // specifying the document language:
+          // googletag.pubads().set("document_language", "en");
+        }
+
+        // Define static ad slots.
+        googletag
+          .defineSlot("/6355419/Travel/Europe", [100, 100], "static-ad-1")
+          .addService(googletag.pubads());
+
+        // Enable SRA and services.
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+      });
+    </script>
+    <style>
+      #link {
+        display: none;
+      }
+
+      div.content {
+        position: fixed;
+        top: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="static-ad-1" style="width: 100px; height: 100px"></div>
+    <div class="content">
+      <span id="status">Web interstitial is not supported on this page.</span>
+      <p>
+        <a id="link" href="https://www.example.com/">TRIGGER INTERSTITIAL</a>
+      </p>
+      <p>
+        <!--
+          You can prevent specific links from triggering GPT-managed web
+          interstials by adding a data-google-interstitial="false" attribute to
+          the anchor element or any ancestor of the anchor element.
+        -->
+        <a data-google-interstitial="false" href="https://www.example.com/">
+          This link will never trigger an interstitial
+        </a>
+      </p>
+    </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Ensure the first call to display comes after static ad slot
+        // divs are defined. If you do not have any static ad slots, this
+        // call can be made immediately after services are enabled.
+        googletag.display(interstitialSlot);
+      });
+    </script>
+  </body>
+</html>

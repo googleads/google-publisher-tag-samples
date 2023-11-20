@@ -1,89 +1,71 @@
 <!doctype html>
 <!--
- Copyright 2021 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
-
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Anchor Ad Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display a GPT-managed anchor ad." />
+    <title>Display an anchor ad</title>
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <script>
-      window.googletag = window.googletag || {cmd: []};
+      window.googletag = window.googletag || { cmd: [] };
 
-      // GPT ad slots
-      var anchorSlot;
-      var staticSlot;
+      let anchorSlot;
 
-      googletag.cmd.push(function() {
+      googletag.cmd.push(() => {
         // Define an anchor ad slot at the top of the viewport.
         // Note: a single anchor ad slot may be defined per page, at either the
         // top or bottom of the viewport.
         //
-        // Be aware that anchor ads are not limited to mobile devices. If you serve
-        // the same code to both mobile and non-mobile users, it is recommended to
-        // explicitly define when and where anchor ads should be shown for each
-        // environment. Here we use a basic check of viewport width to create a
-        // top anchor on mobile and a bottom anchor on non-mobile devices.
-        if (document.body.clientWidth <= 500) {
-          anchorSlot = googletag.defineOutOfPageSlot(
-            '/6355419/Travel', googletag.enums.OutOfPageFormat.TOP_ANCHOR);
-        } else {
-          anchorSlot = googletag.defineOutOfPageSlot(
-            '/6355419/Travel', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR);
-        }
+        // Be aware that anchor ads are not limited to mobile devices. If you
+        // serve the same code to both mobile and non-mobile users, it is
+        // recommended to explicitly define when and where anchor ads should be
+        // shown for each environment. Here we use a basic check of viewport
+        // width to create a top anchor on mobile and a bottom anchor on
+        // non-mobile devices.
+        anchorSlot = googletag.defineOutOfPageSlot(
+          "/6355419/Travel",
+          document.body.clientWidth <= 500
+            ? googletag.enums.OutOfPageFormat.TOP_ANCHOR
+            : googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR,
+        );
 
-        // Define an anchor ad slot at the bottom of the viewport.
-        // anchorSlot = googletag.defineOutOfPageSlot(
-        //     '/6355419/Travel', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR);
-
-        // Anchor slots return null if the page or device does not support
-        // anchors.
+        // Anchor slots return null if the page or device does not support anchors.
         if (anchorSlot) {
-          anchorSlot
-              .setTargeting('test', 'anchor')
-              .addService(googletag.pubads());
+          anchorSlot.setTargeting("test", "anchor").addService(googletag.pubads());
 
-          document.getElementById('status').innerText =
-            'Anchor ad is initialized. Scroll page to activate.';
+          document.getElementById("status").innerText =
+            "Anchor ad is initialized. Scroll page to activate.";
         }
 
         // Define static ad slots.
-        staticSlot = googletag.defineSlot(
-              '/6355419/Travel/Europe', [100, 100], 'static-ad-1')
-            .addService(googletag.pubads());
+        googletag
+          .defineSlot("/6355419/Travel/Europe", [100, 100], "static-ad-1")
+          .addService(googletag.pubads());
 
         // Enable SRA and services.
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
       });
     </script>
+    <style></style>
   </head>
   <body>
-    <div id="page-content" style="height: 900vh;">
+    <div id="page-content" style="height: 900vh">
       <h1 id="status">Anchor ads are not supported on this page.</h1>
-      <div id="static-ad-1" style="width: 100px; height: 100px;"></div>
+      <div id="static-ad-1" style="width: 100px; height: 100px"></div>
     </div>
     <script>
-        googletag.cmd.push(function() {
-          // Ensure the first call to display comes after static ad slot
-          // divs are defined. If you do not have any static ad slots, this
-          // call can be made immediately after services are enabled.
-          googletag.display(anchorSlot);
-        });
-      </script>
+      googletag.cmd.push(() => {
+        // Ensure the first call to display comes after static ad slot
+        // divs are defined. If you do not have any static ad slots, this
+        // call can be made immediately after services are enabled.
+        googletag.display(anchorSlot);
+      });
+    </script>
   </body>
 </html>

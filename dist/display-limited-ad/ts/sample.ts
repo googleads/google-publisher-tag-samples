@@ -7,19 +7,20 @@
 // Using @types/google-publisher-tag
 // https://www.npmjs.com/package/@types/google-publisher-tag
 
-window.googletag = window.googletag || {cmd: []};
+window.googletag = window.googletag || { cmd: [] };
 
 googletag.cmd.push(() => {
   // Define an ad slot for div with id "banner-ad".
-  googletag.defineSlot('/6355419/Travel', [728, 90], 'banner-ad')!
-      .setTargeting('test', 'privacy')
-      .addService(googletag.pubads());
+  googletag
+    .defineSlot("/6355419/Travel", [728, 90], "banner-ad")!
+    .setTargeting("test", "privacy")
+    .addService(googletag.pubads());
 
   // Enable the PubAdsService.
   googletag.enableServices();
 
   // Request and render an ad for the "banner-ad" slot.
-  googletag.display('banner-ad');
+  googletag.display("banner-ad");
 });
 
 let ltdEnabled = false;
@@ -37,10 +38,9 @@ function toggleLimitedAds(this: HTMLButtonElement) {
     // Refresh all ads on the page.
     googletag.pubads().refresh();
 
-    button.setAttribute('data-enabled', ltdEnabled.toString());
+    button.setAttribute("data-enabled", ltdEnabled.toString());
   });
 }
 
 // Register click event handlers.
-document.getElementById('ltdButton')!.addEventListener(
-    'click', toggleLimitedAds);
+document.getElementById("ltdButton")!.addEventListener("click", toggleLimitedAds);

@@ -1,51 +1,52 @@
 <!doctype html>
 <!--
- Copyright 2022 Google LLC
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
 -->
-
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Display an ad in the absence of consent for the use of cookies or other local identifiers."
+    />
     <title>Display a limited ad</title>
     <!---
-     Load GPT from the limited ads URL to enable setPrivacySettings limited ads functionality.
+     Load GPT from the limited ads URL to enable limited ads functionality.
     --->
     <script async src="https://pagead2.googlesyndication.com/tag/js/gpt.js"></script>
     <script>
-      window.googletag = window.googletag || {cmd: []};
-      googletag.cmd.push(function() {
-        googletag.defineSlot('/6355419/Travel', [728, 90], 'banner-ad')
-                 .setTargeting('test', 'privacy')
-                 .addService(googletag.pubads());
+      window.googletag = window.googletag || { cmd: [] };
+
+      googletag.cmd.push(() => {
+        // Define an ad slot for div with id "banner-ad".
+        googletag
+          .defineSlot("/6355419/Travel", [728, 90], "banner-ad")
+          .setTargeting("test", "privacy")
+          .addService(googletag.pubads());
+
+        // Enable the PubAdsService.
         googletag.enableServices();
       });
 
-      var ltdEnabled = false;
-      function toggleLimitedAds(button) {
+      let ltdEnabled = false;
+      function toggleLimitedAds() {
+        const button = this;
+
         // Set to true to enable, false to disable.
         ltdEnabled = !ltdEnabled;
 
-        googletag.cmd.push(function() {
+        googletag.cmd.push(() => {
           googletag.pubads().setPrivacySettings({
-            limitedAds: ltdEnabled
+            limitedAds: ltdEnabled,
           });
 
           // Refresh all ads on the page.
           googletag.pubads().refresh();
 
-          button.setAttribute('data-enabled', ltdEnabled);
+          button.setAttribute("data-enabled", ltdEnabled.toString());
         });
       }
     </script>
@@ -55,6 +56,7 @@
         color: red;
         font-weight: bold;
       }
+
       button[data-enabled="true"]::after {
         content: "ON";
         color: green;
@@ -63,17 +65,18 @@
     </style>
   </head>
   <body>
-    <div id="banner-ad" style="width: 728px; height: 90px;">
-      <script>
-        googletag.cmd.push(function() {
-          googletag.display('banner-ad');
-        });
-      </script>
-    </div>
+    <div id="banner-ad" style="width: 728px; height: 90px"></div>
     <div>
-      <button onclick="toggleLimitedAds(this);">
-        Limited Ads
-      </button>
+      <button id="ltdButton">Limited Ads</button>
     </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render an ad for the "banner-ad" slot.
+        googletag.display("banner-ad");
+
+        // Register click event handlers.
+        document.getElementById("ltdButton").addEventListener("click", toggleLimitedAds);
+      });
+    </script>
   </body>
 </html>
