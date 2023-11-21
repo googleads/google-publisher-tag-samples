@@ -1,7 +1,0 @@
-{
-  "name": "refresh",
-  "title": "Refresh ad slots",
-  "description": "Use GPT to dynamically reload ads.",
-  "skill": "Advanced",
-  "keywords": ["Multiple ads", "Performance"]
-}
