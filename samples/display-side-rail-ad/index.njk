@@ -1,0 +1,14 @@
+{% extends '../../src/_includes/sample-layout.njk'%}
+{% block html %}
+  <div id="page-content" class="content-area">
+    <h1 id="status">Side rail ads are initializing.</h1>
+    <div id="static-ad-1" style="width: 100px; height: 100px;"></div>
+  </div>
+{% endblock %}
+{% block styles %}
+  .content-area {
+    height: 100vh;
+    width: calc(100% - 400px);
+    margin: auto;
+  }
+{% endblock %}
