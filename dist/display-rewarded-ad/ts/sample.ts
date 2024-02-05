@@ -10,6 +10,7 @@
 window.googletag = window.googletag || { cmd: [] };
 
 let rewardedSlot: googletag.Slot | null;
+let rewardPayload: googletag.RewardedPayload | null;
 
 googletag.cmd.push(() => {
   rewardedSlot = googletag.defineOutOfPageSlot(
@@ -22,9 +23,12 @@ googletag.cmd.push(() => {
     rewardedSlot.addService(googletag.pubads());
 
     googletag.pubads().addEventListener("rewardedSlotReady", (event) => {
+      updateStatus("Rewarded ad slot is ready.");
+
       document.getElementById("watchAdButton")!.onclick = () => {
         event.makeRewardedVisible();
         displayModal();
+        updateStatus("Rewarded ad is active.");
       };
 
       displayModal("reward", "Watch an ad to receive a special reward?");
@@ -33,23 +37,34 @@ googletag.cmd.push(() => {
     googletag.pubads().addEventListener("rewardedSlotClosed", dismissRewardedAd);
 
     googletag.pubads().addEventListener("rewardedSlotGranted", (event) => {
-      // Automatically close the ad by destroying the slot.
-      // Remove this to force the user to close the ad themselves.
-      dismissRewardedAd();
+      rewardPayload = event.payload;
+      updateStatus("Reward granted.");
+    });
 
-      const reward = event.payload;
-      if (reward) {
-        displayModal("grant", `You have been rewarded ${reward.amount} ${reward.type}!`);
+    googletag.pubads().addEventListener("slotRenderEnded", (event) => {
+      if (event.slot === rewardedSlot && event.isEmpty) {
+        updateStatus("No ad returned for rewarded ad slot.");
       }
     });
 
     googletag.enableServices();
     googletag.display(rewardedSlot);
+  } else {
+    updateStatus("Rewarded ads are not supported on this page.");
   }
 });
 
 function dismissRewardedAd() {
-  displayModal();
+  if (rewardPayload) {
+    // User was granted a reward and closed the ad.
+    displayModal("grant", `You have been rewarded ${rewardPayload.amount} ${rewardPayload.type}!`);
+    rewardPayload = null;
+  } else {
+    // User closed the ad without getting a reward.
+    displayModal();
+  }
+
+  updateStatus("Rewarded ad has been closed.");
 
   if (rewardedSlot) {
     googletag.destroySlots([rewardedSlot]);
@@ -64,6 +79,10 @@ function displayModal(type: string = "", message: string = "") {
     document.getElementById("modalMessage")!.textContent = message;
     modal.setAttribute("data-type", type);
   }
+}
+
+function updateStatus(message: string) {
+  document.getElementById("status")!.textContent = message;
 }
 
 // Register click event handlers.
