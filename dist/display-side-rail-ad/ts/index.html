@@ -1,0 +1,29 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display a GPT-managed side rail ad." />
+    <title>Display a side rail ad</title>
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      .content-area {
+        height: 100vh;
+        width: calc(100% - 400px);
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page-content" class="content-area">
+      <h1 id="status">Side rail ads are initializing.</h1>
+      <div id="static-ad-1" style="width: 100px; height: 100px"></div>
+    </div>
+  </body>
+</html>
