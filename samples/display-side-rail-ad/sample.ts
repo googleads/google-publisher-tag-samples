@@ -22,14 +22,17 @@ googletag.cmd.push(() => {
 
   // Side rail slots return null if the page or device does not support
   // side rails.
-  if (leftSideRail && rightSideRail) {
-    leftSideRail.addService(googletag.pubads());
-    rightSideRail.addService(googletag.pubads());
+  if (leftSideRail) leftSideRail.addService(googletag.pubads());
+  if (rightSideRail) rightSideRail.addService(googletag.pubads());
 
-    document.getElementById('status')!.textContent =
+  if (leftSideRail && rightSideRail) {
+    document.getElementById('status').textContent =
         'Side rail ads are initialized.';
+  } else if (leftSideRail || rightSideRail) {
+    document.getElementById('status').textContent =
+        `${leftSideRail ? 'Left' : 'Right'} side rail ad is initialized.`;
   } else {
-    document.getElementById('status')!.textContent =
+    document.getElementById('status').textContent =
         'Side rail ads are not supported on this page.';
   }
 
@@ -46,8 +49,8 @@ googletag.cmd.push(() => {
   // Ensure the first call to display comes after static ad slot
   // divs are defined. If you do not have any static ad slots, this
   // call can be made immediately after services are enabled.
-  if (leftSideRail) {
-    googletag.display(leftSideRail);
+  if (leftSideRail || rightSideRail) {
+    googletag.display(leftSideRail ?? rightSideRail);
   }
   // [END request_ads]
 });
