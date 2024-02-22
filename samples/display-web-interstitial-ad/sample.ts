@@ -23,6 +23,7 @@ googletag.cmd.push(() => {
     interstitialSlot.addService(googletag.pubads()).setConfig({
       interstitial: {
         triggers: {
+          navBar: true,
           unhideWindow: true,
         },
       },
