@@ -51,6 +51,15 @@ Support for additional user actions may be added in the future. Follow the
     that consent for [Purpose 1][admanager_hc_tcf_purpose] is required for web
     interstitial ads to function.
 
+*   **Some links on a page might be ineligible to show web interstitial ads.**
+    Interstitial ads won't show when a user clicks an ineligible link, for
+    example, links to URLs without HTTP/HTTPS, and links that open in a new
+    window.
+
+    Note: You can prevent specific links from triggering GPT-managed web
+    interstitials by adding a `data-google-interstitial="false"` attribute to
+    the anchor element or any ancestor of the anchor element.
+
 *   **If using single-request architecture (SRA) on a page with multiple slots,
     don't call `display()` until static ad slots divs are created.** As
     explained in [Ad Best Practices][guide_sra], the first call to `display()`
