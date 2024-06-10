@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/google-publisher-tag": "^1.20240219.0",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.5",
     "vite": "^4.5.3"
   },
   "dependencies": {}
