@@ -18,6 +18,13 @@ googletag.cmd.push(() => {
           'fixed-size-ad')!.addService(googletag.pubads());
   // [END fixed_size_ad]
 
+
+  // Define a fluid ad slot.
+  // [START fluid_ad]
+  googletag.defineSlot('/6355419/Travel', ['fluid'], 'native-ad')!.addService(
+    googletag.pubads());
+  // [END fluid_ad]
+
   // Define a multi-size ad slot.
   // [START multi_size_ad]
   googletag
@@ -27,15 +34,11 @@ googletag.cmd.push(() => {
             [300, 250],
             [728, 90],
             [750, 200],
+            'fluid'
           ],
           'multi-size-ad')!.addService(googletag.pubads());
   // [END multi_size_ad]
 
-  // Define a fluid ad slot.
-  // [START fluid_ad]
-  googletag.defineSlot('/6355419/Travel', ['fluid'], 'native-ad')!.addService(
-      googletag.pubads());
-  // [END fluid_ad]
 
   // Define a responsive ad slot.
   // [START responsive_ad]

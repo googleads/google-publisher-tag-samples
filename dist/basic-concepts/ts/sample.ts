@@ -31,8 +31,8 @@ googletag.cmd.push(() => {
       "Anchor ad is initialized. Scroll page to activate.";
   }
 
-  // Define a fluid ad slot that adjusts its height to fit the creative
-  // content being displayed.
+  // Define a fluid ad slot that fills the width of the enclosing column and
+  // adjusts the height as defined by the native creative delivered.
   googletag.defineSlot("/6355419/Travel", ["fluid"], "native-ad")!.addService(googletag.pubads());
 
   // Configure page-level targeting.
