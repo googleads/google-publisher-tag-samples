@@ -1,0 +1,16 @@
+{% extends '../../src/_includes/sample-layout.njk'%}
+{% block html %}
+  <div id="host"></div>
+  <div class="controls">
+    <button id="clear">Clear ad</button>
+    <button id="refresh">Refresh ad</button>
+  </div>
+{% endblock %}
+{% block styles %}
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+  }
+{% endblock %}

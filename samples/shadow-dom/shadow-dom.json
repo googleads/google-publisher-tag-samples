@@ -1,0 +1,7 @@
+{
+  "name": "shadow-dom",
+  "title": "Display ads in the shadow DOM",
+  "description": "Use GPT to request and render ads in the shadow DOM.",
+  "skill": "Advanced",
+  "keywords": ["Shadow DOM", "Web Components"]
+}
