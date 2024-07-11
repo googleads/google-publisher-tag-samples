@@ -56,10 +56,15 @@ module.exports = (eleventyConfig: UserConfig) => {
             const htmlContent =
                 fs.readFileSync(htmlPath)
                     .toString()
+                    // Replace <script> tag with the parsed head JS.
                     .replace(
                         /<script.*?src="\/sample.ts"><\/script>/gm,
                         `${parsedJs.head}`)
-                    .replace(/<\/body>/gm, `${parsedJs.body}</body>`);
+                    // Append parsed body JS to the <body> tag.
+                    .replace(/<\/body>/gm, `${parsedJs.body}</body>`)
+                    // If there are now 2 consecutive script tags in the body,
+                    // combine them into one.
+                    .replace(/(<body>.*)<\/script>\s+<script>(.*)/s, '$1\n$2');
 
             fs.writeFileSync(htmlPath, await formatCode(htmlContent, htmlPath));
             fs.unlinkSync(jsPath);

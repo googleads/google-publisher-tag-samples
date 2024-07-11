@@ -1,0 +1,79 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Use GPT to request and render ads in the shadow DOM." />
+    <title>Display ads in the shadow DOM</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      let adSlot;
+
+      googletag.cmd.push(() => {
+        // Define an ad slot for the "ad-slot" div.
+        adSlot = googletag
+          .defineSlot("/6355419/Travel/Europe", [300, 250], "ad-slot")
+          .addService(googletag.pubads());
+
+        // Enable the PubAdsService.
+        googletag.enableServices();
+      });
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        // Register click handlers.
+        document.querySelector("#clear").addEventListener("click", (event) => {
+          googletag.cmd.push(() => {
+            googletag.pubads().clear([adSlot]);
+          });
+        });
+
+        document.querySelector("#refresh").addEventListener("click", (event) => {
+          googletag.cmd.push(() => {
+            googletag.pubads().refresh([adSlot]);
+          });
+        });
+      });
+    </script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="host"></div>
+    <div class="controls">
+      <button id="clear">Clear ad</button>
+      <button id="refresh">Refresh ad</button>
+    </div>
+    <script>
+      // Attach a shadow DOM to the host element and insert an ad container.
+      // Ensure the shadow DOM is in open mode, to allow GPT access.
+      const shadow = document.querySelector("#host").attachShadow({ mode: "open" });
+      const adContainer = document.createElement("div");
+      adContainer.id = "ad-slot";
+      adContainer.style.cssText = "height: 250px; width: 300px;";
+      shadow.appendChild(adContainer);
+
+      googletag.cmd.push(() => {
+        // Locate the ad container in the shadow DOM and display an ad in it.
+        const shadowRoot = document.querySelector("#host").shadowRoot;
+        googletag.display(shadowRoot.querySelector("#ad-slot"));
+      });
+    </script>
+  </body>
+</html>

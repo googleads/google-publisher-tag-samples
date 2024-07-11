@@ -5,6 +5,15 @@
     <button id="clear">Clear ad</button>
     <button id="refresh">Refresh ad</button>
   </div>
+  <script>
+    // Attach a shadow DOM to the host element and insert an ad container.
+    // Ensure the shadow DOM is in open mode, to allow GPT access.
+    const shadow = document.querySelector('#host').attachShadow({mode: 'open'});
+    const adContainer = document.createElement('div');
+    adContainer.id = 'ad-slot';
+    adContainer.style.cssText = 'height: 250px; width: 300px;';
+    shadow.appendChild(adContainer);
+  </script>
 {% endblock %}
 {% block styles %}
   body {
