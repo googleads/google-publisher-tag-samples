@@ -57,7 +57,7 @@
             "Is empty?": event.isEmpty,
             "Label IDs": event.labelIds,
             "Line Item ID": event.lineItemId,
-            Size: typeof event.size === "string" ? event.size : event.size?.join("x") ?? null,
+            Size: typeof event.size === "string" ? event.size : (event.size?.join("x") ?? null),
             "Slot content changed?": event.slotContentChanged,
             "Source Agnostic Creative ID": event.sourceAgnosticCreativeId,
             "Source Agnostic Line Item ID": event.sourceAgnosticLineItemId,
