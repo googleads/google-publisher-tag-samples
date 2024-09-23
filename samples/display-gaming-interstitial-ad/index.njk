@@ -1,0 +1,20 @@
+{% extends '../../src/_includes/sample-layout.njk'%}
+{% block html %}
+  <div id="static-ad-1" style="width: 100px; height: 100px"></div>
+  <div class="content">
+    <span id="status">Gaming interstitial is not supported on this page.</span>
+    <p>
+      <button id="trigger">TRIGGER INTERSTITIAL</button>
+    </p>
+  </div>
+{% endblock %}
+{% block styles %}
+  button {
+    display: none;
+  }
+
+  div.content {
+    position: fixed;
+    top: 50%;
+  }
+{% endblock %}

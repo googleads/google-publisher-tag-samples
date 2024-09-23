@@ -1,0 +1,39 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display a GPT-managed gaming interstitial ad." />
+    <title>Display an H5 gaming interstitial ad</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      button {
+        display: none;
+      }
+
+      div.content {
+        position: fixed;
+        top: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="static-ad-1" style="width: 100px; height: 100px"></div>
+    <div class="content">
+      <span id="status">Gaming interstitial is not supported on this page.</span>
+      <p>
+        <button id="trigger">TRIGGER INTERSTITIAL</button>
+      </p>
+    </div>
+  </body>
+</html>
