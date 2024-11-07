@@ -46,7 +46,6 @@ googletag.cmd.push(() => {
       "Creative Template ID": event.creativeId,
       "Is backfill?": event.isBackfill,
       "Is empty?": event.isEmpty,
-      "Label IDs": event.labelIds,
       "Line Item ID": event.lineItemId,
       Size: typeof event.size === "string" ? event.size : (event.size?.join("x") ?? null),
       "Slot content changed?": event.slotContentChanged,
