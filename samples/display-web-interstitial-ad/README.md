@@ -33,8 +33,10 @@ Support for additional user actions may be added in the future. Follow the
     an interstitial to appear.** Web interstitial ads are eligible to serve to
     desktop, tablet, and mobile devices.
 
-    Note: You can use Chrome DevTools [mobile simulation][simulate_mobile] to
-    test web interstitial ads on mobile from a desktop environment.
+    Tip: For best results, use
+    `<meta name="viewport" content="width=device-width, initial-scale=1" />` on
+    mobile pages, or avoid setting fixed widths and heights on your document,
+    as that can result in poorly scaled interstitial ads.
 
 *   **Web interstitial ads generate their own ad slot.** Unlike other ad types,
     you don't need to define a `<div>` for web interstitial ads. These ads
