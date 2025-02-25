@@ -13,7 +13,7 @@ let gamingInterstitialSlot: googletag.Slot | null;
 
 googletag.cmd.push(() => {
   // Define a gaming interstitial ad slot.
-  defineGamingInterstitialSlot(true);
+  defineGamingInterstitialSlot();
 
   // Add gaming interstitial event listeners.
   addGamingInterstitialListeners();
@@ -30,10 +30,12 @@ googletag.cmd.push(() => {
   // Ensure the first call to display comes after static ad slot
   // divs are defined. If you do not have any static ad slots, this
   // call can be made immediately after services are enabled.
-  googletag.display(gamingInterstitialSlot!);
+  if (gamingInterstitialSlot) {
+    googletag.display(gamingInterstitialSlot);
+  }
 });
 
-function defineGamingInterstitialSlot(delay: boolean) {
+function defineGamingInterstitialSlot(): boolean {
   document.getElementById("trigger")!.style.display = "none";
 
   gamingInterstitialSlot = googletag.defineOutOfPageSlot(
@@ -44,12 +46,11 @@ function defineGamingInterstitialSlot(delay: boolean) {
   // Slot returns null if the page or device does not support interstitials.
   if (gamingInterstitialSlot) {
     gamingInterstitialSlot.addService(googletag.pubads());
-    if (!delay) {
-      googletag.display(gamingInterstitialSlot);
-    }
     printStatus("Waiting for interstitial to be ready...");
+    return true;
   } else {
     printStatus("This device does not support interstitials.");
+    return false;
   }
 }
 
@@ -86,7 +87,10 @@ function addGamingInterstitialListeners() {
     if (gamingInterstitialSlot) {
       googletag.destroySlots([gamingInterstitialSlot]);
     }
-    defineGamingInterstitialSlot(false);
+
+    if (defineGamingInterstitialSlot()) {
+      googletag.display(gamingInterstitialSlot!);
+    }
 
     resumeGame();
   });
