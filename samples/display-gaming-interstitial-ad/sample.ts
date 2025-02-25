@@ -15,6 +15,9 @@ googletag.cmd.push(() => {
   // Define a gaming interstitial ad slot.
   defineGamingInterstitialSlot();
 
+  // Add gaming interstitial event listeners.
+  addGamingInterstitialListeners();
+
   // Define static ad slots.
   googletag.defineSlot(
                '/6355419/Travel/Europe', [100, 100],
@@ -28,11 +31,15 @@ googletag.cmd.push(() => {
   // Ensure the first call to display comes after static ad slot
   // divs are defined. If you do not have any static ad slots, this
   // call can be made immediately after services are enabled.
-  googletag.display(gamingInterstitialSlot!);
+  if (gamingInterstitialSlot) {
+    googletag.display(gamingInterstitialSlot);
+  }
   // [END request_ads]
 });
 
-function defineGamingInterstitialSlot() {
+function defineGamingInterstitialSlot(): boolean {
+  document.getElementById('trigger')!.style.display = 'none';
+
   gamingInterstitialSlot = googletag.defineOutOfPageSlot(
       '/6355419/Travel/Europe/France/Paris',
       googletag.enums.OutOfPageFormat.GAME_MANUAL_INTERSTITIAL,
@@ -42,44 +49,60 @@ function defineGamingInterstitialSlot() {
   if (gamingInterstitialSlot) {
     gamingInterstitialSlot.addService(googletag.pubads());
     printStatus('Waiting for interstitial to be ready...');
-
-    // Add event listener to register click handler once interstitial loads.
-    // If this event doesn't fire, check the browser console for errors.
-    googletag.pubads().addEventListener(
-        'gameManualInterstitialSlotReady',
-        (slotReadyEvent:
-             googletag.events.GameManualInterstitialSlotReadyEvent) => {
-          if (gamingInterstitialSlot === slotReadyEvent.slot) {
-            printStatus('Interstitial is ready.');
-
-            const button = document.getElementById('trigger')!;
-            button.style.display = 'block';
-            button.addEventListener(
-                'click',
-                () => {
-                  slotReadyEvent.makeGameManualInterstitialVisible();
-                  printStatus('Interstitial is active.');
-                },
-                {once: true},
-            );
-          }
-        });
-
-    googletag.pubads().addEventListener(
-        'gameManualInterstitialSlotClosed', resumeGame);
+    return true;
+  } else {
+    printStatus('This device does not support interstitials.');
+    return false;
   }
 }
 
+function addGamingInterstitialListeners() {
+  // Add event listener to register click handler once interstitial loads.
+  // If this event doesn't fire, check the browser console for errors.
+  googletag.pubads().addEventListener(
+      'gameManualInterstitialSlotReady',
+      (slotReadyEvent:
+            googletag.events.GameManualInterstitialSlotReadyEvent) => {
+        if (gamingInterstitialSlot === slotReadyEvent.slot) {
+          printStatus('Interstitial is ready.');
+
+          const button = document.getElementById('trigger')!;
+          button.style.display = 'block';
+          button.addEventListener(
+              'click',
+              () => {
+                pauseGame();
+
+                slotReadyEvent.makeGameManualInterstitialVisible();
+                printStatus('Interstitial is active.');
+              },
+              {once: true},
+          );
+        }
+      });
+
+  googletag.pubads().addEventListener(
+      'gameManualInterstitialSlotClosed', () => {
+        // Gaming interstitial ad slots are one-time use, so destroy the old slot
+        // and create a new one.
+        if (gamingInterstitialSlot) {
+          googletag.destroySlots([gamingInterstitialSlot]);
+        }
+
+        if (defineGamingInterstitialSlot()) {
+          googletag.display(gamingInterstitialSlot!);
+        }
+
+        resumeGame();
+      });
+}
+
+function pauseGame() {
+  // Code to pause the game.
+}
+
 function resumeGame() {
-  if (!gamingInterstitialSlot) return;
-
-  document.getElementById('trigger')!.style.display = 'none';
-
-  // Gaming interstitial ad slots are one-time use, so destroy the old slot
-  // and create a new one.
-  googletag.destroySlots([gamingInterstitialSlot]);
-  defineGamingInterstitialSlot();
-  googletag.display(gamingInterstitialSlot);
+  // Code to resume the game.
 }
 
 function printStatus(status: string) {
