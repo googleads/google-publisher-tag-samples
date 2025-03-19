@@ -10,7 +10,7 @@ on the following events.
 | [ImpressionViewableEvent][ref_doc_impressionviewable]       | An impression  |
 :                                                             : becomes        :
 :                                                             : viewable.      :
-| [SlotOnLoadEvent][ref_doc_slotonload]                       | A creative     |
+| [SlotOnloadEvent][ref_doc_slotonload]                       | A creative     |
 :                                                             : iframe fires   :
 :                                                             : its onload     :
 :                                                             : event.         :
@@ -30,9 +30,9 @@ on the following events.
 :                                                             : the ad slot    :
 :                                                             : changes.       :
 
-[ref_doc_impressionviewable]: https://developers.google.com/publisher-tag/reference#googletag.events.impressionviewableevent
-[ref_doc_slotonload]: https://developers.google.com/publisher-tag/reference#googletag.events.slotonloadevent
-[ref_doc_slotrenderended]: https://developers.google.com/publisher-tag/reference#googletag.events.slotrenderendedevent
-[ref_doc_slotrequested]: https://developers.google.com/publisher-tag/reference#googletag.events.slotrequestedevent
-[ref_doc_slotresponsereceived]: https://developers.google.com/publisher-tag/reference#googletag.events.slotresponsereceived
-[ref_doc_slotvisibilitychanged]: https://developers.google.com/publisher-tag/reference#googletag.events.slotvisibilitychangedevent
+[ref_doc_impressionviewable]: https://developers.google.com/publisher-tag/reference#googletag.events.ImpressionViewableEvent
+[ref_doc_slotonload]: https://developers.google.com/publisher-tag/reference#googletag.events.SlotOnloadEvent
+[ref_doc_slotrenderended]: https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent
+[ref_doc_slotrequested]: https://developers.google.com/publisher-tag/reference#googletag.events.SlotRequestedEvent
+[ref_doc_slotresponsereceived]: https://developers.google.com/publisher-tag/reference#googletag.events.SlotResponseReceived
+[ref_doc_slotvisibilitychanged]: https://developers.google.com/publisher-tag/reference#googletag.events.SlotVisibilityChangedEvent
