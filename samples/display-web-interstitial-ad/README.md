@@ -9,7 +9,7 @@ The following user actions are eligible to trigger a web interstitial ad:
 
 | User action | [API name][ref_docs_interstitialconfig] | Default | Configurable |
 |---------|---------|---------|---------|
-| Navigating away from the page in response to a click. | N/A | Enabled | No |
+| Clicking on an anchor element. | N/A | Enabled | No |
 | Clicking on the browser navigation bar. (Desktop only) | `navBar` | Disabled | Yes |
 | Hiding and then returning to the page (for example, by switching tabs). | `unhideWindow` | Disabled | Yes |
 
