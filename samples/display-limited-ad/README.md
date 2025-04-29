@@ -28,11 +28,11 @@ from the standard URL. When you load GPT from the standard URL, all calls to
 `setPrivacySettings({ limitedAds: ... })` are ignored and the library may
 attempt to access client-side storage at any time. This allows GPT to more
 effectively optimize the order of library operations. For example, GPT can
-perform [encrypted signal][admanager_hc_encrypted_signals] collection earlier,
+perform [secure signal][admanager_hc_secure_signals] collection earlier,
 increasing the likelihood that gathered signals will be included in every ad
 request.
 
-[admanager_hc_encrypted_signals]: //support.google.com/admanager/answer/10488752
+[admanager_hc_secure_signals]: //support.google.com/admanager/answer/10488752
 [admanager_hc_ltd]: //support.google.com/admanager/answer/9882911
 [admanager_hc_ltd_impl]: //support.google.com/admanager/answer/9882911#implementation
 [guide_best_practices_load]: //developers.google.com/publisher-tag/guides/general-best-practices#load_from_an_official_source
