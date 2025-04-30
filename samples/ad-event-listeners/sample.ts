@@ -47,6 +47,7 @@ googletag.cmd.push(() => {
       'Is backfill?': event.isBackfill,
       'Is empty?': event.isEmpty,
       'Line Item ID': event.lineItemId,
+      'Response Identifier': event.responseIdentifier,
       Size: typeof event.size === 'string' ? event.size :
                                              event.size?.join('x') ?? null,
       'Slot content changed?': event.slotContentChanged,
