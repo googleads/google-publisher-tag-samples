@@ -16,13 +16,13 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "@types/google-publisher-tag": "^1.20240902.0",
-    "@types/jasmine": "^5.1.4",
-    "@types/node": "^20.16.5",
-    "jasmine": "^5.3.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.2",
-    "vite": "^4.5.5",
-    "yaml": "^2.5.1"
+    "@types/google-publisher-tag": "^1.20250428.0",
+    "@types/jasmine": "^5.1.8",
+    "@types/node": "^20.17.45",
+    "jasmine": "^5.7.1",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "yaml": "^2.7.1"
   }
 }
