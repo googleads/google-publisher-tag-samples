@@ -73,7 +73,7 @@ H5 game canvas, place the game in an iFrame, as shown in the following example:
 
 *   **Gaming interstitial ads have a fixed frequency cap.** The frequency cap
     prevents the `gamingInterstitialSlotReady` event from firing more than once
-    every 120 seconds.
+    every 30 seconds.
 
 *   **If using single-request architecture (SRA) on a page with multiple slots,
     don't call `display()` until static ad slots divs are created.** As
