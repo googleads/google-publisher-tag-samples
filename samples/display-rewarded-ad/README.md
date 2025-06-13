@@ -18,6 +18,10 @@ the user to view the rewarded ad and to display the reward upon completion. In
 practice, it is the responsibility of the publisher to implement their own
 interface to accomplish these tasks.
 
+Important: Before you display a rewarded ad, you must comply with the
+[policies for ad units that offer rewards][admanager_hc_rewarded_policy] and
+obtain user consent.
+
 ## Usage notes
 
 *   **To ensure an optimal user experience, rewarded ads are only requested on
@@ -34,6 +38,7 @@ interface to accomplish these tasks.
     create and insert their own container into the page when an ad fills.
 
 [admanager_hc_rewarded]: //support.google.com/admanager/answer/9116812
+[admanager_hc_rewarded_policy]: //support.google.com/admanager/answer/7496282
 [RewardedSlotClosedEvent]: //developers.google.com/publisher-tag/reference#googletag.events.rewardedslotclosedevent
 [RewardedSlotGrantedEvent]: //developers.google.com/publisher-tag/reference#googletag.events.rewardedslotgrantedevent
 [RewardedSlotReadyEvent]: //developers.google.com/publisher-tag/reference#googletag.events.rewardedslotreadyevent
