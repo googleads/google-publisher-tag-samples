@@ -16,13 +16,14 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "@types/google-publisher-tag": "^1.20250428.0",
+    "@types/google-publisher-tag": "^1.20250728.0",
     "@types/jasmine": "^5.1.8",
-    "@types/node": "^20.17.45",
-    "jasmine": "^5.7.1",
-    "prettier": "^3.5.3",
+    "@types/node": "^20.19.9",
+    "jasmine": "^5.9.0",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "yaml": "^2.7.1"
+    "yaml": "^2.8.0"
   }
 }

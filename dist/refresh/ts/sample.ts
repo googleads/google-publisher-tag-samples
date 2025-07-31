@@ -35,15 +35,17 @@ googletag.cmd.push(() => {
 
 // Button action which refreshes the first slot
 function refreshFirstSlot() {
+  if (!adSlot1) return;
   googletag.cmd.push(() => {
-    googletag.pubads().refresh([adSlot1]);
+    googletag.pubads().refresh([adSlot1!]);
   });
 }
 
 // Button action which refreshes the second slot
 function refreshSecondSlot() {
+  if (!adSlot2) return;
   googletag.cmd.push(() => {
-    googletag.pubads().refresh([adSlot2]);
+    googletag.pubads().refresh([adSlot2!]);
   });
 }
 
