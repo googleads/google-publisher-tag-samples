@@ -68,8 +68,12 @@ googletag.cmd.push(() => {
   responsiveAdSlot.defineSizeMapping(mapping);
   // [END responsive_ad]
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable SRA.
+  googletag.setConfig({
+    singleRequest: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 
   // [START request_ads]

@@ -12,12 +12,20 @@ window.googletag = window.googletag || {cmd: []};
 googletag.cmd.push(() => {
   // Define the ad slot.
   googletag.defineSlot('/6355419/Travel', [728, 90], 'div-for-slot')!
-      .setTargeting('test', 'event')
-      .addService(googletag.pubads());
+      .addService(googletag.pubads())
+      .setConfig({
+        targeting: {
+          test: 'event',
+        },
+      });
 
-  // Disable initial load.
-  // This prevents GPT from automatically fetching ads when display is called.
-  googletag.pubads().disableInitialLoad();
+  // Disable initial load to prevent GPT from automatically fetching ads when
+  // display() is called.
+  googletag.setConfig({
+    disableInitialLoad: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 
   // [START request_ads]

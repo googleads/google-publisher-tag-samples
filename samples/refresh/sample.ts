@@ -14,17 +14,24 @@ let adSlot2: googletag.Slot|null;
 
 googletag.cmd.push(() => {
   // Define the first slot.
-  adSlot1 = googletag.defineSlot('/6355419/Travel', [728, 90], 'leaderboard1')!
-                .setTargeting('test', 'refresh')
-                .addService(googletag.pubads());
+  adSlot1 = googletag.defineSlot(
+                         '/6355419/Travel', [728, 90],
+                         'leaderboard1')!.addService(googletag.pubads());
 
   // Define the second slot.
-  adSlot2 = googletag.defineSlot('/6355419/Travel', [728, 90], 'leaderboard2')!
-                .setTargeting('test', 'refresh')
-                .addService(googletag.pubads());
+  adSlot2 = googletag.defineSlot(
+                         '/6355419/Travel', [728, 90],
+                         'leaderboard2')!.addService(googletag.pubads());
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable SRA and set page-level targeting.
+  googletag.setConfig({
+    targeting: {
+      test: 'refresh',
+    },
+    singleRequest: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 
   // [START request_ads]

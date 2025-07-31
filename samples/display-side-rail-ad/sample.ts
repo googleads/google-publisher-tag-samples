@@ -41,8 +41,12 @@ googletag.cmd.push(() => {
                '/6355419/Travel/Europe', [100, 100],
                'static-ad-1')!.addService(googletag.pubads());
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable SRA.
+  googletag.setConfig({
+    singleRequest: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 
   // [START request_ads]

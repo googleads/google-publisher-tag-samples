@@ -15,20 +15,35 @@ let adSlots: googletag.Slot[] = [];
 googletag.cmd.push(() => {
   // Configure slot-level targeting.
   adSlots[0] =
-      googletag.defineSlot('/6355419/Travel/Asia', [728, 90], 'banner-ad-1')!
-          .addService(googletag.pubads())
-          .setTargeting('color', 'red')
-          .setTargeting('position', 'atf');
+      googletag.defineSlot(
+                   '/6355419/Travel/Asia', [728, 90],
+                   'banner-ad-1')!.addService(googletag.pubads());
+  adSlots[0].setConfig({
+    targeting: {
+      color: 'red',
+      position: 'atf',
+    },
+  });
+
   adSlots[1] =
-      googletag.defineSlot('/6355419/Travel/Asia', [728, 90], 'banner-ad-2')!
-          .addService(googletag.pubads())
-          .setTargeting('position', 'btf');
+      googletag.defineSlot(
+                   '/6355419/Travel/Asia', [728, 90],
+                   'banner-ad-2')!.addService(googletag.pubads());
+  adSlots[1].setConfig({
+    targeting: {
+      position: 'btf',
+    },
+  });
 
-  // Configure page-level targeting.
-  googletag.pubads().setTargeting('interests', 'basketball');
+  // Configure page-level targeting and enable SRA.
+  googletag.setConfig({
+    targeting: {
+      interests: 'basketball',
+    },
+    singleRequest: true,
+  });
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable services.
   googletag.enableServices();
 
   // [START request_ads]
@@ -58,16 +73,30 @@ function toggleTargeting(this: HTMLButtonElement) {
 
 function enableTargeting() {
   // Reset slot- and page-level targeting to their original values.
-  adSlots[0].setTargeting('color', 'red');
-  googletag.pubads().setTargeting('interests', 'basketball');
+  adSlots[0].setConfig({
+    targeting: {
+      color: 'red',
+    },
+  });
+  googletag.setConfig({
+    targeting: {
+      interests: 'basketball',
+    },
+  });
 }
 
 function disableTargeting() {
   // Step 1, clear slot-level color targeting.
-  adSlots[0].clearTargeting('color');
+  adSlots[0].setConfig({
+    targeting: {
+      color: null,
+    },
+  });
 
   // Step 2, clear all page-level targeting.
-  googletag.pubads().clearTargeting();
+  googletag.setConfig({
+    targeting: null,
+  });
 }
 // [START request_ads]
 

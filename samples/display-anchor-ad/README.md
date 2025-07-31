@@ -54,9 +54,10 @@ look and behave on different devices and in different operating environments.
 
 *   **Only visible anchor ads may be refreshed.** When an anchor ad slot is
     collapsed or not yet scrolled into view, all calls to `refresh()` are
-    ignored. If you're using `disableInitialLoad()` to manually
-    [control ad loading and refresh][guide_ad_loading], however, the first call
-    to `refresh()` will trigger an ad request regardless of the slot visibility.
+    ignored. If you're using `googletag.setConfig({ disableInitialLoad: true })`
+    to manually [control ad loading and refresh][guide_ad_loading], however, the
+    first call to `refresh()` will trigger an ad request regardless of the slot
+    visibility.
 
 [admanager_hc_anchor]: //support.google.com/admanager/answer/10452255
 [guide_ad_loading]: //developers.google.com/publisher-tag/guides/control-ad-loading

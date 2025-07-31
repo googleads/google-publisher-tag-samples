@@ -51,7 +51,7 @@ look and behave on different devices and in different operating environments.
 
 *   **Only refresh visible side rail ads.** When an side rail ad slot
     is collapsed or not visible, all calls to `refresh()` are ignored. If you're
-    using `disableInitialLoad()` to manually
+    using `googletag.setConfig({ disableInitialLoad: true })` to manually
     [control ad loading and refresh][guide_ad_loading], the first call
     to `refresh()` will trigger an ad request regardless of the slot visibility.
 
