@@ -44,11 +44,14 @@
             .addService(googletag.pubads()),
         ];
 
-        // Disable initial load to precisely control when ads are requested.
-        googletag.pubads().disableInitialLoad();
+        // Disable initial load and enable SRA to precisely control when ads are
+        // requested.
+        googletag.setConfig({
+          disableInitialLoad: true,
+          singleRequest: true,
+        });
 
-        // Enable SRA and services.
-        googletag.pubads().enableSingleRequest();
+        // Enable services.
         googletag.enableServices();
 
         // Issue first SRA request (slots 1 and 2) immediately.

@@ -14,8 +14,12 @@ googletag.cmd.push(() => {
   // out-of-page ads.
   googletag
     .defineOutOfPageSlot("/6355419/Travel", "out-of-page-ad")!
-    .setTargeting("test", "outofpage")
-    .addService(googletag.pubads());
+    .addService(googletag.pubads())
+    .setConfig({
+      targeting: {
+        test: "outofpage",
+      },
+    });
 
   // Enable the PubAdsService.
   googletag.enableServices();

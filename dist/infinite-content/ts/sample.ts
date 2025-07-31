@@ -13,11 +13,19 @@ googletag.cmd.push(() => {
   // Define slots initially present on the page.
   googletag
     .defineSlot("/6355419/Travel", [728, 90], "leaderboard")!
-    .setTargeting("test", "infinitescroll")
-    .addService(googletag.pubads());
+    .addService(googletag.pubads())
+    .setConfig({
+      targeting: {
+        test: "infinitescroll",
+      },
+    });
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable SRA.
+  googletag.setConfig({
+    singleRequest: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 
   // Request and render an ad for the "leaderboard" slot.
@@ -27,10 +35,12 @@ googletag.cmd.push(() => {
 function moreContent() {
   googletag.cmd.push(() => {
     // Define a new ad slot.
-    const slot = googletag
-      .defineSlot("/6355419/Travel", [728, 90])!
-      .setTargeting("test", "infinitescroll")
-      .addService(googletag.pubads());
+    const slot = googletag.defineSlot("/6355419/Travel", [728, 90])!.addService(googletag.pubads());
+    slot.setConfig({
+      targeting: {
+        test: "infinitescroll",
+      },
+    });
 
     // Create a container for the slot and add it to the page.
     const div = document.createElement("div");

@@ -19,38 +19,40 @@
       window.googletag = window.googletag || { cmd: [] };
 
       googletag.cmd.push(function () {
-        googletag
-          .defineSlot("/6355419/Travel", [728, 90], "div-1")
-          .setTargeting("test", "lazyload")
-          .addService(googletag.pubads());
-        googletag
-          .defineSlot("/6355419/Travel", [728, 90], "div-2")
-          .setTargeting("test", "lazyload")
-          .addService(googletag.pubads());
-        googletag
-          .defineSlot("/6355419/Travel", [728, 90], "div-3")
-          .setTargeting("test", "lazyload")
-          .addService(googletag.pubads());
+        googletag.defineSlot("/6355419/Travel", [728, 90], "div-1").addService(googletag.pubads());
+        googletag.defineSlot("/6355419/Travel", [728, 90], "div-2").addService(googletag.pubads());
+        googletag.defineSlot("/6355419/Travel", [728, 90], "div-3").addService(googletag.pubads());
 
         // Some examples of ways to enable lazy loading below.
         // Normally, only one of these methods should be used.
 
         // A) Enable with defaults.
-        googletag.pubads().enableLazyLoad();
+        // googletag.pubads().setConfig({
+        //   lazyLoad: {},
+        // });
 
-        // B) Enable without lazy fetching. Additional calls override previous
-        // ones.
-        googletag.pubads().enableLazyLoad({ fetchMarginPercent: -1 });
+        // B) Enable without lazy fetching.
+        // googletag.pubads().setConfig({
+        //   lazyLoad: {
+        //     fetchMarginPercent: null,
+        //   },
+        // });
 
-        // C) Enable lazy loading with...
-        googletag.pubads().enableLazyLoad({
-          // Fetch slots within 5 viewports.
-          fetchMarginPercent: 500,
-          // Render slots within 2 viewports.
-          renderMarginPercent: 200,
-          // Double the above values on mobile, where viewports are smaller
-          // and users tend to scroll faster.
-          mobileScaling: 2.0,
+        // C) Enable lazy loading with a custom configuration.
+        googletag.setConfig({
+          lazyLoad: {
+            // Fetch slots within 5 viewports.
+            fetchMarginPercent: 500,
+            // Render slots within 2 viewports.
+            renderMarginPercent: 200,
+            // Double the above values on mobile, where viewports are smaller
+            // and users tend to scroll faster.
+            mobileScaling: 2.0,
+          },
+          targeting: {
+            test: "lazyload",
+          },
+          singleRequest: true,
         });
 
         // Register event handlers to observe lazy loading behavior.
@@ -62,8 +64,7 @@
           updateSlotStatus(event.slot.getSlotElementId(), "rendered");
         });
 
-        // Enable SRA and services.
-        googletag.pubads().enableSingleRequest();
+        // Enable services.
         googletag.enableServices();
       });
 

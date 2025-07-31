@@ -14,8 +14,12 @@ googletag.cmd.push(() => {
   googletag
     .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad")!
     .addService(googletag.pubads())
-    .setTargeting("color", "red")
-    .setTargeting("position", "atf");
+    .setConfig({
+      targeting: {
+        color: "red",
+        position: "atf",
+      },
+    });
 
   // Define an anchor ad slot that sticks to the bottom of the viewport.
   const anchorSlot = googletag.defineOutOfPageSlot(
@@ -35,11 +39,15 @@ googletag.cmd.push(() => {
   // adjusts the height as defined by the native creative delivered.
   googletag.defineSlot("/6355419/Travel", ["fluid"], "native-ad")!.addService(googletag.pubads());
 
-  // Configure page-level targeting.
-  googletag.pubads().setTargeting("interests", "basketball");
+  // Configure page-level targeting and enable SRA.
+  googletag.setConfig({
+    targeting: {
+      interests: "basketball",
+    },
+    singleRequest: true,
+  });
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable services.
   googletag.enableServices();
 
   // Request and render all previously defined ad slots.

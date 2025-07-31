@@ -31,7 +31,11 @@ googletag.cmd.push(() => {
 
   // Anchor slots return null if the page or device does not support anchors.
   if (anchorSlot) {
-    anchorSlot.setTargeting("test", "anchor").addService(googletag.pubads());
+    anchorSlot.addService(googletag.pubads()).setConfig({
+      targeting: {
+        test: "anchor",
+      },
+    });
 
     document.getElementById("status")!.innerText =
       "Anchor ad is initialized. Scroll page to activate.";
@@ -42,8 +46,12 @@ googletag.cmd.push(() => {
     .defineSlot("/6355419/Travel/Europe", [100, 100], "static-ad-1")!
     .addService(googletag.pubads());
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable SRA.
+  googletag.setConfig({
+    singleRequest: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 
   // Ensure the first call to display comes after static ad slot

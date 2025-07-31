@@ -20,8 +20,12 @@ googletag.cmd.push(() => {
     .defineSlot("/6355419/Travel/Europe", [300, 250], "slot-3")!
     .addService(googletag.pubads());
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable SRA.
+  googletag.setConfig({
+    singleRequest: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 });
 

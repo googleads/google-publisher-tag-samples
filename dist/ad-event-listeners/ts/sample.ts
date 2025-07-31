@@ -86,8 +86,12 @@ googletag.cmd.push(() => {
     printEventMessage("Visibility has changed.", slotId, details);
   });
 
-  // Enable SRA and services.
-  googletag.pubads().enableSingleRequest();
+  // Enable SRA.
+  googletag.setConfig({
+    singleRequest: true,
+  });
+
+  // Enable services.
   googletag.enableServices();
 
   // Request and render all previously defined ad slots.
