@@ -33,6 +33,10 @@ googletag.cmd.push(() => {
       displayModal('reward', 'Watch an ad to receive a special reward?');
     });
 
+    googletag.pubads().addEventListener('rewardedSlotVideoCompleted', (event) => {
+      updateStatus('Video ad has finished playing.');
+    });
+
     googletag.pubads().addEventListener(
         'rewardedSlotClosed', dismissRewardedAd);
 

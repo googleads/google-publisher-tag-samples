@@ -7,11 +7,12 @@ receive rewards for viewing ads. Learn more about rewarded ads in the
 
 You can use the following GPT events to display and interact with rewarded ads:
 
-Event                        | Fired when...
-:--------------------------- | :-------------------------------------------
-[RewardedSlotClosedEvent][]  | A rewarded ad slot has been closed.
-[RewardedSlotGrantedEvent][] | A reward has been granted for viewing an ad.
-[RewardedSlotReadyEvent][]   | A rewarded ad slot is ready to be displayed.
+Event                               | Fired when...
+:---------------------------------- | :------------------------------------------------
+[RewardedSlotClosedEvent][]         | A rewarded ad slot has been closed.
+[RewardedSlotGrantedEvent][]        | A reward has been granted for viewing an ad.
+[RewardedSlotReadyEvent][]          | A rewarded ad slot is ready to be displayed.
+[RewardedSlotVideoCompletedEvent][] | A rewarded ad slot has finsihed playing a video.
 
 For the purpose of this example, a simple modal dialog is used to both prompt
 the user to view the rewarded ad and to display the reward upon completion. In
@@ -42,3 +43,4 @@ obtain user consent.
 [RewardedSlotClosedEvent]: //developers.google.com/publisher-tag/reference#googletag.events.rewardedslotclosedevent
 [RewardedSlotGrantedEvent]: //developers.google.com/publisher-tag/reference#googletag.events.rewardedslotgrantedevent
 [RewardedSlotReadyEvent]: //developers.google.com/publisher-tag/reference#googletag.events.rewardedslotreadyevent
+[RewardedSlotVideoCompletedEvent]: //developers.google.com/publisher-tag/reference#googletag.events.rewardedslotvideocompletedevent
