@@ -43,9 +43,11 @@ Support for additional user actions may be added in the future. Follow the
     automatically create and insert their own container into the page when an ad
     fills.
 
-*   **Web interstitial ads have a fixed
+*   **Web interstitial ads have a configurable
     [frequency cap][admanager_hc_frequency].** This prevents the same user from
-    being shown an interstitial more than once per hour, per subdomain.
+    being shown an interstitial more than once per the specified window of time,
+    per subdomain. The default frequency cap is 1 impression per 10 minutes, and
+    the minimum allowed cap is 1 impression per 1 minute.
 
 *   **Web interstitial ads require access to local storage.** For publishers
     integrated with the
