@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display an Offerwall with custom choice" />
+    <title>Offerwall with custom choice</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      .custom-choice-modal {
+        max-width: 500px;
+        border: 2px solid rgba(107, 110, 118, 0.4);
+        border-radius: 8px;
+        padding: 10px;
+        background: white;
+      }
+
+      .custom-choice-modal:open::backdrop {
+        background-color: black;
+        opacity: 0.6;
+      }
+
+      .custom-choice-modal h1 {
+        overflow-wrap: break-word;
+        font:
+          500 1.25em Poppins,
+          sans-serif;
+        color: #202124;
+        text-align: center;
+      }
+
+      .custom-choice-list-container {
+        border: 1px solid rgba(95, 99, 104, 0.4);
+        border-radius: 8px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        margin-top: 24px;
+      }
+
+      button.custom-choice-list-item-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+        width: 100%;
+        text-align: left;
+      }
+
+      button.custom-choice-list-item-button:hover {
+        background-color: rgba(32, 33, 36, 0.04);
+        transition: background-color 150ms ease-in;
+      }
+
+      .custom-choice-list-container > button:not(:last-child) {
+        border-bottom: 1px solid rgba(95, 99, 104, 0.4);
+      }
+      .custom-choice-list-container > button:first-child {
+        border-radius: 8px 8px 0 0;
+      }
+      .custom-choice-list-container > button:last-child {
+        border-radius: 0 0 8px 8px;
+      }
+      .custom-choice-list-container > button:only-child {
+        border-radius: 8px;
+      }
+
+      .custom-choice-list-item-text-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-width: 88%;
+      }
+
+      .custom-choice-list-item-text {
+        overflow-wrap: break-word;
+        font:
+          500 14px "Poppins",
+          sans-serif;
+        color: #202124;
+      }
+
+      .custom-choice-list-item-subtext {
+        overflow-wrap: break-word;
+        font:
+          400 14px "Roboto",
+          sans-serif;
+        color: #5f6368;
+        margin: 0;
+      }
+
+      .custom-choice-choice-icon {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-left: 12px;
+      }
+
+      .custom-choice-choice-icon svg {
+        fill: #174ea6;
+        height: 18px;
+        width: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <dialog class="custom-choice-modal">
+      <form method="dialog">
+        <h1>Subscribe for access.</h1>
+        <div class="custom-choice-list-container">
+          <!-- Item 1: Subscribe -->
+          <button type="submit" class="custom-choice-list-item-button" value="subscribe">
+            <div class="custom-choice-list-item-text-container">
+              <span class="custom-choice-list-item-text">Subscribe for just $4.00 per month</span>
+              <p class="custom-choice-list-item-subtext">
+                Includes exclusive tips and articles, special members-only promotions and the latest
+                news and announcements first
+              </p>
+            </div>
+            <svg
+              class="custom-choice-choice-icon"
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              focusable="false"
+            >
+              <path d="M7.59 18.59L9 20l8-8-8-8-1.41 1.41L14.17 12"></path>
+            </svg>
+          </button>
+
+          <!-- Item 2: Go Back -->
+          <button type="submit" class="custom-choice-list-item-button" value="back">
+            <div class="custom-choice-list-item-text-container">
+              <span class="custom-choice-list-item-text">Go back</span>
+              <p class="custom-choice-list-item-subtext">
+                Check what other options we have available for you
+              </p>
+            </div>
+            <svg
+              class="custom-choice-choice-icon"
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              focusable="false"
+            >
+              <path d="M7.59 18.59L9 20l8-8-8-8-1.41 1.41L14.17 12"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
