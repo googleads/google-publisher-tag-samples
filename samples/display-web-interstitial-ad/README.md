@@ -10,6 +10,9 @@ The following user actions are eligible to trigger a web interstitial ad:
 | User action | [API name][ref_docs_interstitialconfig] | Default | Configurable |
 |---------|---------|---------|---------|
 | Clicking on an anchor element. | N/A | Enabled | No |
+| Navigating backward on supported browsers. (Chrome, Edge, and Opera) | `backward` | Disabled | Yes |
+| Scrolling to the end of the page's main `<article>` element. | `endOfArticle` | Disabled | Yes |
+| Clicking, scrolling, or typing after being inactive for at least 30 seconds. | `inactivity` | Disabled | Yes |
 | Clicking on the browser navigation bar. (Desktop only) | `navBar` | Disabled | Yes |
 | Hiding and then returning to the page (for example, by switching tabs). | `unhideWindow` | Disabled | Yes |
 
