@@ -14,9 +14,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/google-publisher-tag": "^1.20250728.0",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "@types/google-publisher-tag": "^1.20251117.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1"
   },
   "dependencies": {}
 }
