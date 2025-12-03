@@ -19,11 +19,11 @@
     "@types/google-publisher-tag": "^1.20251117.0",
     "@types/jasmine": "^5.1.13",
     "@types/node": "^20.19.25",
-    "jasmine": "^5.12.0",
-    "prettier": "^3.6.2",
+    "jasmine": "^5.13.0",
+    "prettier": "^3.7.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "vite": "^6.4.1",
-    "yaml": "^2.8.1"
+    "yaml": "^2.8.2"
   }
 }
