@@ -1,9 +1,9 @@
 {
-  "name": "display-limited-ad",
+  "name": "continue_reading",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "private": true,
-  "description": "Display an ad in the absence of consent for the use of cookies or other local identifiers.",
+  "description": "Customize the web interstitial continue reading trigger and button.",
   "repository": {
     "type": "git",
     "url": "https://github.com/googleads/google-publisher-tag-samples"

@@ -16,15 +16,15 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "@types/google-publisher-tag": "^1.20260518.0",
+    "@types/google-publisher-tag": "^1.20260720.0",
     "@types/jasmine": "^5.1.15",
     "@types/minimatch": "^5.1.2",
-    "@types/node": "^20.19.41",
+    "@types/node": "^20.19.43",
     "jasmine": "^5.13.0",
-    "prettier": "^3.8.3",
+    "prettier": "^3.9.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "vite": "^6.4.2",
+    "vite": "^6.4.3",
     "yaml": "^2.9.0"
   }
 }
