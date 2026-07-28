@@ -1,4 +1,4 @@
-import {SampleCollectionData, SampleData} from '../model/sample-data';
+import {SampleCollectionData, SampleData} from '../model/sample-data.js';
 
 /**
  *  Custom Eleventy JS template class interface.

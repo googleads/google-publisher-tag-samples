@@ -1,4 +1,4 @@
-import {SampleCollectionData} from '../src/model/sample-data';
+import {SampleCollectionData} from '../src/model/sample-data.js';
 
 /**
  * Base data object used for generating language-specific samples.
@@ -27,4 +27,4 @@ const data: SampleCollectionData = {
       '{{ page.fileSlug }}/{{mode}}/{% if mode != \'ts\' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}'
 };
 
-export = data;
+export default data;

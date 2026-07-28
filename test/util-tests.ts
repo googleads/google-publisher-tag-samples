@@ -3,10 +3,10 @@ import 'jasmine';
 import {Readable} from 'stream';
 import YAML from 'yaml';
 
-import {EleventyPageData} from '../src/model/eleventy-data';
-import {SampleDetails} from '../src/model/sample-data';
-import {JS_BODY_MARKER, parseHeadAndBodyJS} from '../src/util/js-utils';
-import {generateSampleDetails, getSampleDirFromPageData} from '../src/util/template-utils';
+import {EleventyPageData} from '../src/model/eleventy-data.js';
+import {SampleDetails} from '../src/model/sample-data.js';
+import {JS_BODY_MARKER, parseHeadAndBodyJS} from '../src/util/js-utils.js';
+import {generateSampleDetails, getSampleDirFromPageData} from '../src/util/template-utils.js';
 
 describe('Utility', () => {
   describe('JS utils', () => {

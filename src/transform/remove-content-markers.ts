@@ -1,6 +1,6 @@
 import path from 'path';
 
-import {JS_BODY_MARKER} from '../util/js-utils';
+import {JS_BODY_MARKER} from '../util/js-utils.js';
 
 const jsMarkersToRemove: string[] = [];
 const tsMarkersToRemove: string[] = [JS_BODY_MARKER];

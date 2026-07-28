@@ -1,9 +1,9 @@
 import 'jasmine';
 
-import {formatCode} from '../src/transform/format-code';
-import {removeContentMarkers} from '../src/transform/remove-content-markers';
-import {removeHeaders} from '../src/transform/remove-headers';
-import {JS_BODY_MARKER} from '../src/util/js-utils';
+import {formatCode} from '../src/transform/format-code.js';
+import {removeContentMarkers} from '../src/transform/remove-content-markers.js';
+import {removeHeaders} from '../src/transform/remove-headers.js';
+import {JS_BODY_MARKER} from '../src/util/js-utils.js';
 
 describe('Eleventy transform', () => {
   describe('format-code', () => {

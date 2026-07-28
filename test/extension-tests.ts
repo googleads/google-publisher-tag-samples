@@ -2,8 +2,11 @@ import 'jasmine';
 
 import fs from 'fs';
 import path from 'path';
+import {fileURLToPath} from 'url';
 
-import {TEST_ONLY as TSExtension} from '../src/extension/typescript';
+import {TEST_ONLY as TSExtension} from '../src/extension/typescript.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Eleventy extension tests.

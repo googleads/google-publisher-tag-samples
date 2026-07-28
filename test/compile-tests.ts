@@ -2,8 +2,11 @@ import 'jasmine';
 
 import fs from 'fs';
 import path from 'path';
+import {fileURLToPath} from 'url';
+import ts from 'typescript';
 import {create} from 'ts-node';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SAMPLES_DIR = path.resolve(__dirname, '../samples');
 
 describe('Sample compilation tests', () => {
@@ -11,7 +14,11 @@ describe('Sample compilation tests', () => {
                       .filter(dirent => dirent.isDirectory())
                       .map(dirent => dirent.name);
 
-  const compiler = create();
+  const compiler = create({
+    compilerOptions: {
+      module: 'commonjs' as any
+    }
+  });
 
   for (const sample of samples) {
     const tsFile = path.join(SAMPLES_DIR, sample, 'sample.ts');

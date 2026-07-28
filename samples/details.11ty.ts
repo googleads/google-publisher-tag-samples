@@ -1,6 +1,6 @@
-import {SampleCollectionData, SampleData} from '../src/model/sample-data';
-import {SampleTemplate} from '../src/model/sample-template';
-import {generateSampleDetails, getSampleDirFromPageData} from '../src/util/template-utils';
+import {SampleCollectionData, SampleData} from '../src/model/sample-data.js';
+import {SampleTemplate} from '../src/model/sample-template.js';
+import {generateSampleDetails, getSampleDirFromPageData} from '../src/util/template-utils.js';
 
 /**
  * Template for generating `<sample>/sample.yaml` files.
@@ -24,4 +24,4 @@ class Details implements SampleTemplate {
   }
 }
 
-export = Details;
+export default Details;

@@ -1,6 +1,6 @@
-import {SampleCollectionData, SampleData} from '../src/model/sample-data';
-import {SampleTemplate} from '../src/model/sample-template';
-import {getSampleDirFromPageData} from '../src/util/template-utils';
+import {SampleCollectionData, SampleData} from '../src/model/sample-data.js';
+import {SampleTemplate} from '../src/model/sample-template.js';
+import {getSampleDirFromPageData} from '../src/util/template-utils.js';
 
 /**
  * Template for generating `<sample>/ts/.gitignore` files.
@@ -34,4 +34,4 @@ dist-ssr
   }
 }
 
-export = GitIgnore;
+export default GitIgnore;

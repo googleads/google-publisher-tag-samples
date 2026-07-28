@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "Apache-2.0",
   "private": true,
+  "type": "module",
   "description": "A collection of Google Publisher Tag code samples.",
   "repository": {
     "type": "git",
@@ -15,7 +16,7 @@
     "test": "npm run build:tsc && jasmine --config=jasmine.json"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy": "^3.1.6",
     "@types/google-publisher-tag": "^1.20260720.0",
     "@types/jasmine": "^5.1.15",
     "@types/minimatch": "^5.1.2",

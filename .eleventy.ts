@@ -1,17 +1,22 @@
-import {UserConfig} from '@11ty/eleventy';
+import type UserConfig from '@11ty/eleventy/UserConfig';
 import fs from 'fs';
 import path from 'path';
+import {fileURLToPath} from 'url';
 
-import {TypeScriptExension} from './src/extension/typescript';
-import {formatCode} from './src/transform/format-code';
-import {removeContentMarkers} from './src/transform/remove-content-markers';
-import {removeHeaders} from './src/transform/remove-headers';
-import {parseHeadAndBodyJS} from './src/util/js-utils';
+import {TypeScriptExension} from './src/extension/typescript.js';
+import {formatCode} from './src/transform/format-code.js';
+import {removeContentMarkers} from './src/transform/remove-content-markers.js';
+import {removeHeaders} from './src/transform/remove-headers.js';
+import {parseHeadAndBodyJS} from './src/util/js-utils.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Defines the output formats 11ty will perform post-processing on.
 const POST_PROCESS_OUTPUT_FORMATS = ['js', 'legacyjs'];
 
-module.exports = (eleventyConfig: UserConfig) => {
+export default (eleventyConfig: UserConfig) => {
+  eleventyConfig.configureErrorReporting({ allowMissingExtensions: true });
+
   // Ignore TS templates, they're compiled to JS as part of the build process.
   eleventyConfig.ignores!.add('samples/*.11ty*.ts');
 
@@ -44,32 +49,36 @@ module.exports = (eleventyConfig: UserConfig) => {
   eleventyConfig.on('eleventy.after', async () => {
     const distPath = path.join(__dirname, 'dist');
 
-    fs.readdirSync(distPath, {withFileTypes: true})
+    const samples = fs.readdirSync(distPath, {withFileTypes: true})
         .filter((f) => f.isDirectory())
-        .map(({name: sample}: fs.Dirent) => {
-          POST_PROCESS_OUTPUT_FORMATS.forEach(async (format) => {
-            const jsPath = path.join(distPath, sample, format, 'demo.js');
-            const parsedJs =
-                await parseHeadAndBodyJS(fs.createReadStream(jsPath));
+        .map(({name: sample}: fs.Dirent) => sample);
 
-            const htmlPath = path.join(distPath, sample, format, 'demo.html');
-            const htmlContent =
-                fs.readFileSync(htmlPath)
-                    .toString()
-                    // Replace <script> tag with the parsed head JS.
-                    .replace(
-                        /<script.*?src="\/sample.ts"><\/script>/gm,
-                        `${parsedJs.head}`)
-                    // Append parsed body JS to the <body> tag.
-                    .replace(/<\/body>/gm, `${parsedJs.body}</body>`)
-                    // If there are now 2 consecutive script tags in the body,
-                    // combine them into one.
-                    .replace(/(<body>.*)<\/script>\s+<script>(.*)/s, '$1\n$2');
+    for (const sample of samples) {
+      for (const format of POST_PROCESS_OUTPUT_FORMATS) {
+        const jsPath = path.join(distPath, sample, format, 'demo.js');
+        if (!fs.existsSync(jsPath)) continue;
 
-            fs.writeFileSync(htmlPath, await formatCode(htmlContent, htmlPath));
-            fs.unlinkSync(jsPath);
-          });
-        });
+        const parsedJs =
+            await parseHeadAndBodyJS(fs.createReadStream(jsPath));
+
+        const htmlPath = path.join(distPath, sample, format, 'demo.html');
+        const htmlContent =
+            fs.readFileSync(htmlPath)
+                .toString()
+                // Replace <script> tag with the parsed head JS.
+                .replace(
+                    /<script.*?src="\/sample.ts"><\/script>/gm,
+                    `${parsedJs.head}`)
+                // Append parsed body JS to the <body> tag.
+                .replace(/<\/body>/gm, `${parsedJs.body}</body>`)
+                // If there are now 2 consecutive script tags in the body,
+                // combine them into one.
+                .replace(/(<body>.*)<\/script>\s+<script>(.*)/s, '$1\n$2');
+
+        fs.writeFileSync(htmlPath, await formatCode(htmlContent, htmlPath));
+        fs.unlinkSync(jsPath);
+      }
+    }
   });
 
   return {

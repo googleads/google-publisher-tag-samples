@@ -1,4 +1,4 @@
-import {EleventyCollection, EleventyCollectionData, EleventyData} from './eleventy-data'
+import {EleventyCollection, EleventyCollectionData, EleventyData} from './eleventy-data.js';
 
 /**
  * EleventyData interface with custom extensions.

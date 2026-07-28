@@ -1,8 +1,8 @@
 import {randomUUID} from 'crypto';
 import ts from 'typescript';
 
-import {SampleCollection} from '../model/sample-data';
-import {getSampleDirFromPageData} from '../util/template-utils';
+import {SampleCollection} from '../model/sample-data.js';
+import {getSampleDirFromPageData} from '../util/template-utils.js';
 
 const PLACEHOLDER_COMMENT = `/* ${randomUUID()} */`;
 

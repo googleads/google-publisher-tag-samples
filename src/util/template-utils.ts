@@ -1,7 +1,7 @@
 import YAML from 'yaml';
 
-import {EleventyPageData} from '../model/eleventy-data';
-import {SampleDetails} from '../model/sample-data';
+import {EleventyPageData} from '../model/eleventy-data.js';
+import {SampleDetails} from '../model/sample-data.js';
 
 /**
  * Generates YAML details for a single sample.

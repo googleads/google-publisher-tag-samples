@@ -1,6 +1,6 @@
-import {SampleCollectionData, SampleData} from '../src/model/sample-data';
-import {SampleTemplate} from '../src/model/sample-template';
-import {getSampleDirFromPageData} from '../src/util/template-utils';
+import {SampleCollectionData, SampleData} from '../src/model/sample-data.js';
+import {SampleTemplate} from '../src/model/sample-template.js';
+import {getSampleDirFromPageData} from '../src/util/template-utils.js';
 
 /**
  * Template for generating `<sample>/ts/package.json` files.
@@ -20,9 +20,10 @@ class Package implements SampleTemplate {
   }
 
   render({pkg, sample}: SampleData) {
+    const {type: _, ...basePkg} = pkg as any;
     return JSON.stringify(
         {
-          ...pkg,
+          ...basePkg,
           name: sample.data.name,
           description: sample.data.description,
           dependencies: Object.fromEntries(sample.data.dependencies!.map(
@@ -35,4 +36,4 @@ class Package implements SampleTemplate {
   }
 }
 
-export = Package;
+export default Package;

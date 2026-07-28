@@ -35,6 +35,7 @@ export interface EleventyCollection<Type> {
  */
 export interface EleventyCollectionData<Type> {
   eleventyExcludeFromCollections?: boolean;
+  eleventyAllowMissingExtension?: boolean;
   pagination: {data: string; size: number; alias: string;};
   permalink: string|((data: Type) => string);
 }
